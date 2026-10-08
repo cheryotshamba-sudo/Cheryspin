@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>CherySpin - Register</title>
+    <meta name="theme-color" content="#120a22">
+
+    <title>Chat & Earn - CherySpin</title>
 
     <style>
         * {
@@ -26,16 +29,18 @@
                     #07030f 100%
                 );
             color: #ffffff;
-            font-family: Arial, sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-family: Arial, Helvetica, sans-serif;
             padding: 20px;
         }
 
         .app {
             width: 100%;
             max-width: 430px;
+            margin: 0 auto;
+            min-height: calc(100vh - 40px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .logo {
@@ -44,8 +49,8 @@
         }
 
         .logo h1 {
-            font-size: 38px;
-            font-weight: 800;
+            font-size: 36px;
+            font-weight: 900;
             letter-spacing: -1px;
         }
 
@@ -53,114 +58,133 @@
             color: #ffd54a;
         }
 
-        .logo p {
+        .tagline {
             color: #9d96aa;
             font-size: 14px;
             margin-top: 8px;
         }
 
         .card {
-            background: rgba(18, 10, 34, 0.96);
-            border: 1px solid rgba(255, 213, 74, 0.16);
+            background: #120a22;
+            border: 1px solid rgba(255, 213, 74, 0.14);
             border-radius: 22px;
-            padding: 28px 22px;
+            padding: 25px 20px;
             box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.45);
+                0 20px 55px rgba(0, 0, 0, 0.45);
         }
 
         .card h2 {
-            text-align: center;
             font-size: 24px;
-            margin-bottom: 8px;
+            margin-bottom: 7px;
         }
 
-        .subtitle {
-            text-align: center;
+        .description {
             color: #9d96aa;
             font-size: 14px;
-            margin-bottom: 25px;
+            line-height: 1.5;
+            margin-bottom: 24px;
         }
 
         .form-group {
-            margin-bottom: 17px;
+            margin-bottom: 16px;
         }
 
-        .form-group label {
+        label {
             display: block;
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 13px;
+            font-weight: 700;
+            color: #ddd7e5;
             margin-bottom: 8px;
         }
 
-        .input {
+        input,
+        select {
             width: 100%;
             height: 52px;
             border: 1px solid #332344;
             border-radius: 12px;
             background: #0d0717;
             color: #ffffff;
-            padding: 0 15px;
+            padding: 0 14px;
             font-size: 15px;
             outline: none;
-            transition: 0.2s;
         }
 
-        .input:focus {
+        input:focus,
+        select:focus {
             border-color: #ffd54a;
-            box-shadow: 0 0 0 3px rgba(255, 213, 74, 0.08);
         }
 
-        .input::placeholder {
+        input::placeholder {
             color: #625b6c;
         }
 
-        .password-wrap {
-            position: relative;
+        input[readonly] {
+            color: #ffd54a;
+            font-weight: 700;
+            cursor: default;
         }
 
-        .password-wrap .input {
-            padding-right: 55px;
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image:
+                linear-gradient(
+                    45deg,
+                    transparent 50%,
+                    #ffd54a 50%
+                ),
+                linear-gradient(
+                    135deg,
+                    #ffd54a 50%,
+                    transparent 50%
+                );
+            background-position:
+                calc(100% - 19px) 22px,
+                calc(100% - 13px) 22px;
+            background-size:
+                6px 6px,
+                6px 6px;
+            background-repeat: no-repeat;
         }
 
-        .toggle-password {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: #9d96aa;
-            cursor: pointer;
-            font-size: 13px;
+        select option {
+            background: #120a22;
+            color: #ffffff;
         }
 
-        .submit-btn {
+        .age-hint {
+            color: #625b6c;
+            font-size: 11px;
+            margin-top: 6px;
+        }
+
+        .continue-btn {
             width: 100%;
             height: 54px;
             margin-top: 8px;
             border: none;
-            border-radius: 13px;
+            border-radius: 14px;
             background:
                 linear-gradient(
                     135deg,
                     #ffd54a,
                     #ff9e00
                 );
-            color: #160c00;
-            font-size: 15px;
-            font-weight: 800;
+            color: #170d00;
+            font-size: 16px;
+            font-weight: 900;
             cursor: pointer;
             box-shadow:
-                0 10px 25px rgba(255, 158, 0, 0.18);
+                0 8px 25px rgba(255, 158, 0, 0.18);
         }
 
-        .submit-btn:active {
+        .continue-btn:active {
             transform: scale(0.98);
         }
 
-        .submit-btn:disabled {
-            opacity: 0.65;
+        .continue-btn:disabled {
+            opacity: 0.6;
             cursor: not-allowed;
         }
 
@@ -170,28 +194,29 @@
             padding: 12px;
             border-radius: 10px;
             font-size: 13px;
+            line-height: 1.4;
             text-align: center;
         }
 
         .message.error {
             display: block;
-            background: rgba(255, 70, 70, 0.10);
-            border: 1px solid rgba(255, 70, 70, 0.25);
-            color: #ff9b9b;
+            background: rgba(239, 68, 68, 0.10);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            color: #ff8585;
         }
 
         .message.success {
             display: block;
             background: rgba(34, 197, 94, 0.10);
             border: 1px solid rgba(34, 197, 94, 0.25);
-            color: #7ee2a0;
+            color: #72e69a;
         }
 
         .login-link {
             text-align: center;
-            margin-top: 22px;
-            color: #9d96aa;
-            font-size: 14px;
+            margin-top: 20px;
+            color: #81798d;
+            font-size: 13px;
         }
 
         .login-link a {
@@ -200,28 +225,23 @@
             font-weight: 700;
         }
 
-        .notice {
-            margin-top: 18px;
-            padding: 12px;
-            border-radius: 10px;
-            background: rgba(255, 213, 74, 0.05);
-            border: 1px solid rgba(255, 213, 74, 0.10);
-            color: #81798d;
-            font-size: 11px;
-            line-height: 1.5;
+        .bottom-text {
             text-align: center;
+            color: #625b6c;
+            font-size: 11px;
+            margin-top: 20px;
         }
 
         .loading {
             display: inline-block;
             width: 14px;
             height: 14px;
-            border: 2px solid rgba(22, 12, 0, 0.3);
-            border-top-color: #160c00;
+            border: 2px solid rgba(23, 13, 0, 0.25);
+            border-top-color: #170d00;
             border-radius: 50%;
             animation: spin 0.7s linear infinite;
             vertical-align: middle;
-            margin-right: 6px;
+            margin-right: 7px;
         }
 
         @keyframes spin {
@@ -231,12 +251,20 @@
         }
 
         @media (max-width: 380px) {
+            body {
+                padding: 15px;
+            }
+
+            .app {
+                min-height: calc(100vh - 30px);
+            }
+
             .card {
-                padding: 24px 17px;
+                padding: 22px 16px;
             }
 
             .logo h1 {
-                font-size: 34px;
+                font-size: 32px;
             }
         }
     </style>
@@ -244,348 +272,650 @@
 
 <body>
 
-    <div class="app">
+<div class="app">
 
-        <div class="logo">
-            <h1>Chery<span>Spin</span></h1>
-            <p>Spin. Play. Enjoy.</p>
-        </div>
+    <div class="logo">
 
-        <div class="card">
+        <h1>
+            Chat & <span>Earn</span>
+        </h1>
 
-            <h2>Create Account</h2>
+        <p class="tagline">
+            Connect • Chat • Learn • Earn
+        </p>
 
-            <p class="subtitle">
-                Register your CherySpin account
-            </p>
+    </div>
 
-            <form id="registerForm">
 
-                <div class="form-group">
-                    <label for="fullName">
-                        Full Name
-                    </label>
+    <div class="card">
 
-                    <input
-                        type="text"
-                        id="fullName"
-                        class="input"
-                        placeholder="Enter your full name"
-                        autocomplete="name"
-                        required
-                    >
-                </div>
+        <h2>
+            Create Your Profile
+        </h2>
 
-                <div class="form-group">
-                    <label for="phone">
-                        Phone Number
-                    </label>
+        <p class="description">
+            Enter your details to get started.
+        </p>
 
-                    <input
-                        type="tel"
-                        id="phone"
-                        class="input"
-                        placeholder="Enter your phone number"
-                        autocomplete="tel"
-                        required
-                    >
-                </div>
 
-                <div class="form-group">
-                    <label for="password">
-                        Password
-                    </label>
+        <form id="registerForm">
 
-                    <div class="password-wrap">
+            <!-- Full Name -->
+            <div class="form-group">
 
-                        <input
-                            type="password"
-                            id="password"
-                            class="input"
-                            placeholder="Create a password"
-                            autocomplete="new-password"
-                            minlength="6"
-                            required
-                        >
+                <label for="fullName">
+                    Full Name
+                </label>
 
-                        <button
-                            type="button"
-                            class="toggle-password"
-                            id="togglePassword"
-                        >
-                            SHOW
-                        </button>
-
-                    </div>
-                </div>
-
-                <button
-                    type="submit"
-                    class="submit-btn"
-                    id="registerButton"
+                <input
+                    type="text"
+                    id="fullName"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
                 >
-                    CREATE ACCOUNT
-                </button>
 
-            </form>
+            </div>
+
+
+            <!-- Age -->
+            <div class="form-group">
+
+                <label for="age">
+                    Age
+                </label>
+
+                <input
+                    type="number"
+                    id="age"
+                    min="18"
+                    max="99"
+                    placeholder="18 - 99"
+                    required
+                >
+
+                <div class="age-hint">
+                    You must be 18 or older.
+                </div>
+
+            </div>
+
+
+            <!-- Gender -->
+            <div class="form-group">
+
+                <label for="gender">
+                    Gender
+                </label>
+
+                <select
+                    id="gender"
+                    required
+                >
+
+                    <option value="">
+                        Select Gender
+                    </option>
+
+                    <option value="Male">
+                        Male
+                    </option>
+
+                    <option value="Female">
+                        Female
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                    <option value="Prefer not to say">
+                        Prefer not to say
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Country -->
+            <div class="form-group">
+
+                <label for="country">
+                    Country
+                </label>
+
+                <input
+                    type="text"
+                    id="country"
+                    value="Kenya"
+                    readonly
+                >
+
+            </div>
+
+
+            <!-- County -->
+            <div class="form-group">
+
+                <label for="county">
+                    County
+                </label>
+
+                <select
+                    id="county"
+                    required
+                >
+
+                    <option value="">
+                        Select County
+                    </option>
+
+                    <option value="Baringo">
+                        Baringo
+                    </option>
+
+                    <option value="Bomet">
+                        Bomet
+                    </option>
+
+                    <option value="Bungoma">
+                        Bungoma
+                    </option>
+
+                    <option value="Busia">
+                        Busia
+                    </option>
+
+                    <option value="Elgeyo-Marakwet">
+                        Elgeyo-Marakwet
+                    </option>
+
+                    <option value="Embu">
+                        Embu
+                    </option>
+
+                    <option value="Garissa">
+                        Garissa
+                    </option>
+
+                    <option value="Homa Bay">
+                        Homa Bay
+                    </option>
+
+                    <option value="Isiolo">
+                        Isiolo
+                    </option>
+
+                    <option value="Kajiado">
+                        Kajiado
+                    </option>
+
+                    <option value="Kakamega">
+                        Kakamega
+                    </option>
+
+                    <option value="Kericho">
+                        Kericho
+                    </option>
+
+                    <option value="Kiambu">
+                        Kiambu
+                    </option>
+
+                    <option value="Kilifi">
+                        Kilifi
+                    </option>
+
+                    <option value="Kirinyaga">
+                        Kirinyaga
+                    </option>
+
+                    <option value="Kisii">
+                        Kisii
+                    </option>
+
+                    <option value="Kisumu">
+                        Kisumu
+                    </option>
+
+                    <option value="Kitui">
+                        Kitui
+                    </option>
+
+                    <option value="Kwale">
+                        Kwale
+                    </option>
+
+                    <option value="Laikipia">
+                        Laikipia
+                    </option>
+
+                    <option value="Lamu">
+                        Lamu
+                    </option>
+
+                    <option value="Machakos">
+                        Machakos
+                    </option>
+
+                    <option value="Makueni">
+                        Makueni
+                    </option>
+
+                    <option value="Mandera">
+                        Mandera
+                    </option>
+
+                    <option value="Marsabit">
+                        Marsabit
+                    </option>
+
+                    <option value="Meru">
+                        Meru
+                    </option>
+
+                    <option value="Migori">
+                        Migori
+                    </option>
+
+                    <option value="Mombasa">
+                        Mombasa
+                    </option>
+
+                    <option value="Murang'a">
+                        Murang'a
+                    </option>
+
+                    <option value="Nairobi">
+                        Nairobi
+                    </option>
+
+                    <option value="Nakuru">
+                        Nakuru
+                    </option>
+
+                    <option value="Nandi">
+                        Nandi
+                    </option>
+
+                    <option value="Narok">
+                        Narok
+                    </option>
+
+                    <option value="Nyamira">
+                        Nyamira
+                    </option>
+
+                    <option value="Nyandarua">
+                        Nyandarua
+                    </option>
+
+                    <option value="Nyeri">
+                        Nyeri
+                    </option>
+
+                    <option value="Samburu">
+                        Samburu
+                    </option>
+
+                    <option value="Siaya">
+                        Siaya
+                    </option>
+
+                    <option value="Taita-Taveta">
+                        Taita-Taveta
+                    </option>
+
+                    <option value="Tana River">
+                        Tana River
+                    </option>
+
+                    <option value="Tharaka-Nithi">
+                        Tharaka-Nithi
+                    </option>
+
+                    <option value="Trans Nzoia">
+                        Trans Nzoia
+                    </option>
+
+                    <option value="Turkana">
+                        Turkana
+                    </option>
+
+                    <option value="Uasin Gishu">
+                        Uasin Gishu
+                    </option>
+
+                    <option value="Vihiga">
+                        Vihiga
+                    </option>
+
+                    <option value="Wajir">
+                        Wajir
+                    </option>
+
+                    <option value="West Pokot">
+                        West Pokot
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Phone Number -->
+            <div class="form-group">
+
+                <label for="phone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="07XXXXXXXX"
+                    autocomplete="tel"
+                    maxlength="10"
+                    inputmode="numeric"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="continue-btn"
+                id="continueBtn"
+            >
+                CONTINUE
+            </button>
+
 
             <div
                 id="message"
                 class="message"
             ></div>
 
-            <div class="login-link">
-                Already have an account?
-                <a href="login.html">
-                    Login
-                </a>
-            </div>
+        </form>
 
-            <div class="notice">
-                By creating an account, you agree to use
-                CherySpin responsibly and according to its
-                terms and applicable laws.
-            </div>
+
+        <div class="login-link">
+
+            Already have an account?
+
+            <a href="./login.html">
+                Login
+            </a>
 
         </div>
 
     </div>
 
-    <script>
 
-        const API_URL =
-            "https://cheryspin-backend-1.onrender.com";
+    <div class="bottom-text">
+        Chat • Connect • Learn • Earn
+    </div>
 
-        const registerForm =
-            document.getElementById("registerForm");
-
-        const registerButton =
-            document.getElementById("registerButton");
-
-        const message =
-            document.getElementById("message");
-
-        const passwordInput =
-            document.getElementById("password");
-
-        const togglePassword =
-            document.getElementById("togglePassword");
+</div>
 
 
-        togglePassword.addEventListener(
-            "click",
-            function () {
+<script>
 
-                if (
-                    passwordInput.type ===
-                    "password"
-                ) {
+    const API_URL =
+        "https://cheryspin-backend-1.onrender.com";
 
-                    passwordInput.type =
-                        "text";
 
-                    togglePassword.textContent =
-                        "HIDE";
+    const form =
+        document.getElementById("registerForm");
 
-                } else {
+    const continueBtn =
+        document.getElementById("continueBtn");
 
-                    passwordInput.type =
-                        "password";
+    const message =
+        document.getElementById("message");
 
-                    togglePassword.textContent =
-                        "SHOW";
-                }
 
+    function showError(text) {
+
+        message.className =
+            "message error";
+
+        message.textContent =
+            text;
+    }
+
+
+    form.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const fullName =
+                document
+                    .getElementById("fullName")
+                    .value
+                    .trim();
+
+            const age =
+                Number(
+                    document
+                        .getElementById("age")
+                        .value
+                );
+
+            const gender =
+                document
+                    .getElementById("gender")
+                    .value;
+
+            const country =
+                "Kenya";
+
+            const county =
+                document
+                    .getElementById("county")
+                    .value;
+
+            const phone =
+                document
+                    .getElementById("phone")
+                    .value
+                    .trim();
+
+
+            if (!fullName) {
+
+                showError(
+                    "Please enter your full name."
+                );
+
+                return;
             }
-        );
 
 
-        function showMessage(
-            text,
-            type
-        ) {
+            if (
+                !Number.isInteger(age) ||
+                age < 18 ||
+                age > 99
+            ) {
 
-            message.textContent = text;
+                showError(
+                    "Age must be between 18 and 99."
+                );
+
+                return;
+            }
+
+
+            if (!gender) {
+
+                showError(
+                    "Please select your gender."
+                );
+
+                return;
+            }
+
+
+            if (!county) {
+
+                showError(
+                    "Please select your county."
+                );
+
+                return;
+            }
+
+
+            if (!/^07\d{8}$/.test(phone)) {
+
+                showError(
+                    "Please enter a valid phone number such as 0712345678."
+                );
+
+                return;
+            }
+
+
+            continueBtn.disabled =
+                true;
+
+            continueBtn.innerHTML =
+                '<span class="loading"></span>CREATING...';
 
             message.className =
-                "message " + type;
-        }
+                "message";
 
 
-        registerForm.addEventListener(
-            "submit",
-            async function (event) {
+            try {
 
-                event.preventDefault();
+                const response =
+                    await fetch(
+                        API_URL +
+                        "/api/register",
+                        {
+                            method: "POST",
 
-                const fullName =
-                    document
-                        .getElementById("fullName")
-                        .value
-                        .trim();
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
 
-                const phone =
-                    document
-                        .getElementById("phone")
-                        .value
-                        .trim();
+                            body: JSON.stringify({
 
-                const password =
-                    passwordInput.value;
+                                full_name:
+                                    fullName,
 
+                                phone:
+                                    phone,
 
-                if (!fullName) {
+                                age:
+                                    age,
 
-                    showMessage(
-                        "Please enter your full name.",
-                        "error"
+                                gender:
+                                    gender,
+
+                                country:
+                                    country,
+
+                                county:
+                                    county
+
+                            })
+                        }
                     );
 
-                    return;
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    !data.success
+                ) {
+
+                    throw new Error(
+                        data.message ||
+                        "Unable to create account."
+                    );
                 }
 
 
-                if (!phone) {
+                localStorage.setItem(
+                    "cherySpinLoggedIn",
+                    "true"
+                );
 
-                    showMessage(
-                        "Please enter your phone number.",
-                        "error"
-                    );
+                localStorage.setItem(
+                    "cherySpinUserId",
+                    String(data.user.id)
+                );
 
-                    return;
-                }
+                localStorage.setItem(
+                    "cherySpinName",
+                    data.user.full_name
+                );
 
+                localStorage.setItem(
+                    "cherySpinPhone",
+                    data.user.phone
+                );
 
-                if (password.length < 6) {
+                localStorage.setItem(
+                    "cherySpinAge",
+                    String(age)
+                );
 
-                    showMessage(
-                        "Password must be at least 6 characters.",
-                        "error"
-                    );
+                localStorage.setItem(
+                    "cherySpinGender",
+                    gender
+                );
 
-                    return;
-                }
+                localStorage.setItem(
+                    "cherySpinCountry",
+                    country
+                );
 
-
-                registerButton.disabled =
-                    true;
-
-                registerButton.innerHTML =
-                    '<span class="loading"></span>CREATING...';
-
-                message.className =
-                    "message";
-
-
-                try {
-
-                    const response =
-                        await fetch(
-                            API_URL +
-                            "/api/register",
-                            {
-                                method: "POST",
-
-                                headers: {
-                                    "Content-Type":
-                                        "application/json"
-                                },
-
-                                body: JSON.stringify({
-                                    full_name:
-                                        fullName,
-
-                                    phone:
-                                        phone,
-
-                                    password:
-                                        password
-                                })
-                            }
-                        );
+                localStorage.setItem(
+                    "cherySpinCounty",
+                    county
+                );
 
 
-                    const data =
-                        await response.json();
+                window.location.href =
+                    "./dashboard.html";
 
 
-                    if (!response.ok ||
-                        !data.success) {
+            } catch (error) {
 
-                        throw new Error(
-                            data.message ||
-                            "Unable to create account."
-                        );
-                    }
+                console.error(
+                    "Registration error:",
+                    error
+                );
 
 
-                    /*
-                     * Save the logged-in user
-                     * information locally.
-                     */
-
-                    localStorage.setItem(
-                        "cherySpinLoggedIn",
-                        "true"
-                    );
-
-                    localStorage.setItem(
-                        "cherySpinUserId",
-                        String(data.user.id)
-                    );
-
-                    localStorage.setItem(
-                        "cherySpinName",
-                        data.user.full_name
-                    );
-
-                    localStorage.setItem(
-                        "cherySpinPhone",
-                        data.user.phone
-                    );
+                showError(
+                    error.message ||
+                    "Unable to connect to the CherySpin server."
+                );
 
 
-                    showMessage(
-                        "Account created successfully. Opening CherySpin...",
-                        "success"
-                    );
+                continueBtn.disabled =
+                    false;
 
-
-                    setTimeout(
-                        function () {
-
-                            window.location.href =
-                                "dashboard.html";
-
-                        },
-                        700
-                    );
-
-
-                } catch (error) {
-
-                    console.error(
-                        "Registration error:",
-                        error
-                    );
-
-                    showMessage(
-                        error.message ||
-                        "Unable to connect to the CherySpin server.",
-                        "error"
-                    );
-
-                    registerButton.disabled =
-                        false;
-
-                    registerButton.textContent =
-                        "CREATE ACCOUNT";
-                }
-
+                continueBtn.textContent =
+                    "CONTINUE";
             }
-        );
 
-    </script>
+        }
+    );
+
+</script>
 
 </body>
 </html>
