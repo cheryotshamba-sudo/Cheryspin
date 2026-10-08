@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <meta name="theme-color" content="#120a22">
+
+    <title>CherySpin</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at top,
+                    #241238 0%,
+                    #0e0718 45%,
+                    #07030f 100%
+                );
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .app {
+            width: 100%;
+            max-width: 430px;
+            min-height: 100vh;
+            margin: auto;
+            padding: 18px;
+            padding-bottom: 30px;
+        }
+
+        /* HEADER */
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px;
+        }
+
+        .brand {
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        .brand span {
+            color: #ffd54a;
+        }
+
+        .profile-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 213, 74, 0.2);
+            background: #120a22;
+            color: #ffd54a;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        /* WELCOME */
+
+        .welcome {
+            margin-bottom: 16px;
+        }
+
+        .welcome small {
+            color: #81798d;
+            font-size: 12px;
+        }
+
+        .welcome h1 {
+            margin-top: 5px;
+            font-size: 25px;
+            font-weight: 900;
+        }
+
+        /* BALANCE */
+
+        .balance-card {
+            background:
+                linear-gradient(
+                    135deg,
+                    #1c102f,
+                    #10071c
+                );
+            border: 1px solid rgba(255, 213, 74, 0.14);
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 14px;
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        .balance-label {
+            color: #9d96aa;
+            font-size: 12px;
+        }
+
+        .balance {
+            margin-top: 7px;
+            font-size: 34px;
+            font-weight: 900;
+            color: #ffd54a;
+        }
+
+        .balance-note {
+            margin-top: 5px;
+            color: #81798d;
+            font-size: 11px;
+        }
+
+        /* SPINS */
+
+        .spin-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #120a22;
+            border: 1px solid rgba(255, 213, 74, 0.1);
+            border-radius: 14px;
+            padding: 15px;
+            margin-bottom: 22px;
+        }
+
+        .spin-info-text strong {
+            display: block;
+            font-size: 15px;
+        }
+
+        .spin-info-text small {
+            display: block;
+            color: #81798d;
+            margin-top: 4px;
+            font-size: 11px;
+        }
+
+        .spin-count {
+            color: #ffd54a;
+            font-size: 24px;
+            font-weight: 900;
+        }
+
+        /* WHEEL */
+
+        .wheel-section {
+            text-align: center;
+        }
+
+        .wheel-section h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .wheel-section p {
+            color: #81798d;
+            font-size: 12px;
+            margin-bottom: 22px;
+        }
+
+        .wheel-wrapper {
+            position: relative;
+            width: 260px;
+            height: 260px;
+            margin: 0 auto 22px;
+        }
+
+        .pointer {
+            position: absolute;
+            z-index: 5;
+            top: -7px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 25px solid #ffd54a;
+            filter: drop-shadow(0 3px 5px rgba(0,0,0,.5));
+        }
+
+        .wheel {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            border: 8px solid #ffd54a;
+            background:
+                conic-gradient(
+                    #ff9e00 0deg 45deg,
+                    #241238 45deg 90deg,
+                    #ffd54a 90deg 135deg,
+                    #120a22 135deg 180deg,
+                    #ff9e00 180deg 225deg,
+                    #241238 225deg 270deg,
+                    #ffd54a 270deg 315deg,
+                    #120a22 315deg 360deg
+                );
+            box-shadow:
+                0 0 30px rgba(255, 174, 0, 0.18),
+                inset 0 0 20px rgba(0,0,0,.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 4s cubic-bezier(.12,.75,.16,1);
+        }
+
+        .wheel-center {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: #07030f;
+            border: 4px solid #ffd54a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffd54a;
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .spin-btn {
+            width: 190px;
+            height: 52px;
+            border: none;
+            border-radius: 14px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffd54a,
+                    #ff9e00
+                );
+            color: #170d00;
+            font-size: 16px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow:
+                0 8px 25px rgba(255, 158, 0, .2);
+        }
+
+        .spin-btn:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+
+        /* WITHDRAWAL */
+
+        .withdraw-card {
+            margin-top: 28px;
+            background: #120a22;
+            border: 1px solid rgba(255, 213, 74, 0.1);
+            border-radius: 16px;
+            padding: 17px;
+        }
+
+        .withdraw-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .withdraw-title {
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .locked {
+            color: #ffb84d;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .withdraw-text {
+            color: #81798d;
+            font-size: 11px;
+            line-height: 1.5;
+            margin-top: 9px;
+        }
+
+        .withdraw-btn {
+            width: 100%;
+            height: 47px;
+            margin-top: 14px;
+            border: 1px solid rgba(255, 213, 74, .1);
+            border-radius: 12px;
+            background: #0d0718;
+            color: #625b6c;
+            font-weight: 800;
+            cursor: not-allowed;
+        }
+
+        /* NAVIGATION */
+
+        .nav {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 25px;
+        }
+
+        .nav-item {
+            text-align: center;
+            padding: 12px 5px;
+            border-radius: 12px;
+            background: #120a22;
+            color: #81798d;
+            font-size: 11px;
+        }
+
+        .nav-item.active {
+            color: #ffd54a;
+            border: 1px solid rgba(255, 213, 74, .12);
+        }
+
+        /* MESSAGE */
+
+        .message {
+            min-height: 18px;
+            margin-top: 14px;
+            text-align: center;
+            color: #ffd54a;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <header class="header">
+
+        <div class="brand">
+            Chery<span>Spin</span>
+        </div>
+
+        <button
+            class="profile-btn"
+            onclick="showProfile()"
+        >
+            CS
+        </button>
+
+    </header>
+
+
+    <section class="welcome">
+
+        <small>Welcome back</small>
+
+        <h1 id="userName">
+            CherySpin Player
+        </h1>
+
+    </section>
+
+
+    <section class="balance-card">
+
+        <div class="balance-label">
+            Available Balance
+        </div>
+
+        <div class="balance">
+            KSh 1,500
+        </div>
+
+        <div class="balance-note">
+            Starting balance
+        </div>
+
+    </section>
+
+
+    <section class="spin-info">
+
+        <div class="spin-info-text">
+
+            <strong>
+                Free Spins
+            </strong>
+
+            <small>
+                Spins remaining today
+            </small>
+
+        </div>
+
+        <div
+            class="spin-count"
+            id="spinCount"
+        >
+            5
+        </div>
+
+    </section>
+
+
+    <section class="wheel-section">
+
+        <h2>
+            Spin & Play
+        </h2>
+
+        <p>
+            Use your free spins to try the wheel.
+        </p>
+
+
+        <div class="wheel-wrapper">
+
+            <div class="pointer"></div>
+
+            <div
+                class="wheel"
+                id="wheel"
+            >
+                <div class="wheel-center">
+                    SPIN
+                </div>
+            </div>
+
+        </div>
+
+
+        <button
+            class="spin-btn"
+            id="spinButton"
+            onclick="spinWheel()"
+        >
+            SPIN NOW
+        </button>
+
+
+        <div
+            class="message"
+            id="message"
+        ></div>
+
+    </section>
+
+
+    <section class="withdraw-card">
+
+        <div class="withdraw-header">
+
+            <div class="withdraw-title">
+                Withdraw
+            </div>
+
+            <div class="locked">
+                🔒 Locked
+            </div>
+
+        </div>
+
+        <p class="withdraw-text">
+            Withdrawals are currently unavailable until
+            the account activation requirements are completed.
+        </p>
+
+        <button
+            class="withdraw-btn"
+            disabled
+        >
+            Account Activation Required
+        </button>
+
+    </section>
+
+
+    <nav class="nav">
+
+        <div class="nav-item active">
+            🏠<br>
+            Home
+        </div>
+
+        <div class="nav-item">
+            🎡<br>
+            Spins
+        </div>
+
+        <div
+            class="nav-item"
+            onclick="logout()"
+        >
+            🚪<br>
+            Logout
+        </div>
+
+    </nav>
+
+</div>
+
+
+<script>
+
+    let spins = 5;
+    let rotation = 0;
+    let spinning = false;
+
+
+    const savedName =
+        localStorage.getItem("cherySpinName");
+
+    if (savedName) {
+        document.getElementById("userName").textContent =
+            savedName;
+    }
+
+
+    function spinWheel() {
+
+        if (spinning) {
+            return;
+        }
+
+        if (spins <= 0) {
+
+            document.getElementById("message").textContent =
+                "You have used all 5 free spins.";
+
+            return;
+        }
+
+
+        spinning = true;
+
+        const button =
+            document.getElementById("spinButton");
+
+        const wheel =
+            document.getElementById("wheel");
+
+        const message =
+            document.getElementById("message");
+
+
+        button.disabled = true;
+
+        message.textContent =
+            "Spinning...";
+
+
+        spins--;
+
+        document.getElementById("spinCount").textContent =
+            spins;
+
+
+        const extraRotation =
+            1440 + Math.floor(Math.random() * 720);
+
+        rotation += extraRotation;
+
+        wheel.style.transform =
+            "rotate(" + rotation + "deg)";
+
+
+        setTimeout(function() {
+
+            spinning = false;
+
+            button.disabled = spins <= 0;
+
+            if (spins > 0) {
+
+                message.textContent =
+                    "Spin completed. " +
+                    spins +
+                    " free spins remaining.";
+
+            } else {
+
+                message.textContent =
+                    "You have used all 5 free spins.";
+
+            }
+
+        }, 4200);
+
+    }
+
+
+    function showProfile() {
+
+        const name =
+            localStorage.getItem("cherySpinName");
+
+        alert(
+            "CherySpin Account\n\n" +
+            "Name: " +
+            (name || "Player") +
+            "\n\nAccount status: Not activated"
+        );
+
+    }
+
+
+    function logout() {
+
+        localStorage.removeItem(
+            "cherySpinLoggedIn"
+        );
+
+        window.location.href =
+            "./index.html";
+
+    }
+
+</script>
+
+</body>
+</html>
