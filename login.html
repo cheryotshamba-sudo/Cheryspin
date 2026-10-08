@@ -217,6 +217,24 @@
             font-size: 11px;
             padding-top: 10px;
         }
+
+        .loading {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(23, 13, 0, 0.25);
+            border-top-color: #170d00;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            vertical-align: middle;
+            margin-right: 7px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 
@@ -231,7 +249,7 @@
         </div>
 
         <a href="./index.html" class="back">
-            Back
+            Register
         </a>
 
     </div>
@@ -244,7 +262,7 @@
         </h1>
 
         <p class="subtitle">
-            Login to your CherySpin account and continue spinning.
+            Login to your CherySpin account and continue.
         </p>
 
 
@@ -298,7 +316,11 @@
             </div>
 
 
-            <a href="#" class="forgot">
+            <a
+                href="#"
+                class="forgot"
+                onclick="return false;"
+            >
                 Forgot password?
             </a>
 
@@ -308,7 +330,7 @@
                 class="login-btn"
                 id="loginBtn"
             >
-                Login
+                LOGIN
             </button>
 
 
@@ -321,10 +343,13 @@
 
 
         <div class="register-text">
+
             Don't have an account?
-            <a href="./register.html">
+
+            <a href="./index.html">
                 Create Account
             </a>
+
         </div>
 
     </div>
@@ -339,6 +364,10 @@
 
 <script>
 
+    const API_URL =
+        "https://cheryspin-backend-1.onrender.com";
+
+
     function togglePassword() {
 
         const input =
@@ -347,14 +376,17 @@
         const button =
             document.querySelector(".show-password");
 
+
         if (input.type === "password") {
 
             input.type = "text";
+
             button.textContent = "HIDE";
 
         } else {
 
             input.type = "password";
+
             button.textContent = "SHOW";
 
         }
@@ -372,74 +404,165 @@
         document.getElementById("loginBtn");
 
 
-    form.addEventListener("submit", function(event) {
+    function showMessage(
+        text,
+        type
+    ) {
 
-        event.preventDefault();
+        message.textContent = text;
 
-        const phone =
-            document.getElementById("phone").value.trim();
+        message.className =
+            "message " + type;
 
-        const password =
-            document.getElementById("password").value;
-
-
-        message.className = "message";
-        message.textContent = "";
+    }
 
 
-        if (!phone || !password) {
+    form.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const phone =
+                document
+                    .getElementById("phone")
+                    .value
+                    .trim();
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
+
+
+            if (!phone || !password) {
+
+                showMessage(
+                    "Please enter your phone number and password.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            loginBtn.disabled = true;
+
+            loginBtn.innerHTML =
+                '<span class="loading"></span>LOGGING IN...';
+
 
             message.className =
-                "message error";
+                "message";
 
-            message.textContent =
-                "Please enter your phone number and password.";
 
-            return;
+            try {
+
+                const response =
+                    await fetch(
+                        API_URL + "/api/login",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                phone:
+                                    phone,
+
+                                password:
+                                    password
+                            })
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok ||
+                    !data.success) {
+
+                    throw new Error(
+                        data.message ||
+                        "Invalid phone number or password."
+                    );
+                }
+
+
+                /*
+                 * Save the real user information
+                 * returned by the backend.
+                 */
+
+                localStorage.setItem(
+                    "cherySpinLoggedIn",
+                    "true"
+                );
+
+                localStorage.setItem(
+                    "cherySpinUserId",
+                    String(data.user.id)
+                );
+
+                localStorage.setItem(
+                    "cherySpinName",
+                    data.user.full_name
+                );
+
+                localStorage.setItem(
+                    "cherySpinPhone",
+                    data.user.phone
+                );
+
+
+                showMessage(
+                    "Login successful. Opening CherySpin...",
+                    "success"
+                );
+
+
+                setTimeout(
+                    function() {
+
+                        window.location.href =
+                            "./dashboard.html";
+
+                    },
+                    700
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Login error:",
+                    error
+                );
+
+
+                showMessage(
+                    error.message ||
+                    "Unable to connect to the CherySpin server.",
+                    "error"
+                );
+
+
+                loginBtn.disabled =
+                    false;
+
+                loginBtn.textContent =
+                    "LOGIN";
+
+            }
+
         }
-
-
-        loginBtn.disabled = true;
-        loginBtn.textContent = "Logging in...";
-
-
-        /*
-         * Temporary preview login.
-         *
-         * We will connect this to the real
-         * CherySpin backend later.
-         */
-
-        setTimeout(function() {
-
-            localStorage.setItem(
-                "cherySpinLoggedIn",
-                "true"
-            );
-
-            localStorage.setItem(
-                "cherySpinPhone",
-                phone
-            );
-
-
-            message.className =
-                "message success";
-
-            message.textContent =
-                "Login successful. Welcome to CherySpin!";
-
-
-            setTimeout(function() {
-
-                window.location.href =
-                    "./dashboard.html";
-
-            }, 700);
-
-        }, 500);
-
-    });
+    );
 
 </script>
 
