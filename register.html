@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 
@@ -10,7 +11,7 @@
 
     <meta name="theme-color" content="#120a22">
 
-    <title>CherySpin - Register</title>
+    <title>Register - CherySpin</title>
 
     <style>
         * {
@@ -37,51 +38,49 @@
             max-width: 430px;
             min-height: 100vh;
             margin: auto;
-            padding: 22px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .topbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .brand {
-            font-size: 21px;
-            font-weight: 900;
-        }
-
-        .brand span {
-            color: #ffd54a;
-        }
-
-        .back {
-            color: #9d96aa;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .content {
-            flex: 1;
+            padding: 25px 18px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 35px 0;
         }
 
-        .title {
+        .logo {
+            text-align: center;
             font-size: 30px;
             font-weight: 900;
             margin-bottom: 8px;
         }
 
+        .logo span {
+            color: #ffd54a;
+        }
+
         .subtitle {
+            text-align: center;
             color: #9d96aa;
-            font-size: 14px;
+            font-size: 13px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: #120a22;
+            border: 1px solid rgba(255, 213, 74, 0.12);
+            border-radius: 20px;
+            padding: 22px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 6px;
+        }
+
+        .description {
+            color: #81798d;
+            font-size: 12px;
             line-height: 1.5;
-            margin-bottom: 28px;
+            margin-bottom: 22px;
         }
 
         .form-group {
@@ -90,22 +89,22 @@
 
         label {
             display: block;
-            color: #d8d2df;
-            font-size: 13px;
+            color: #d7d1df;
+            font-size: 12px;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 7px;
         }
 
         input {
             width: 100%;
-            height: 52px;
-            padding: 0 15px;
+            height: 50px;
+            border: 1px solid rgba(255, 213, 74, 0.12);
             border-radius: 12px;
-            border: 1px solid rgba(255, 213, 74, 0.13);
             outline: none;
-            background: #120a22;
+            padding: 0 14px;
+            background: #0d0718;
             color: #ffffff;
-            font-size: 15px;
+            font-size: 14px;
         }
 
         input:focus {
@@ -113,122 +112,58 @@
         }
 
         input::placeholder {
-            color: #655e70;
-        }
-
-        .password-wrapper {
-            position: relative;
-        }
-
-        .password-wrapper input {
-            padding-right: 55px;
-        }
-
-        .show-password {
-            position: absolute;
-            right: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            border: none;
-            background: none;
-            color: #ffd54a;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .terms {
-            display: flex;
-            align-items: flex-start;
-            gap: 9px;
-            margin: 5px 0 20px;
-            color: #81798d;
-            font-size: 11px;
-            line-height: 1.5;
-        }
-
-        .terms input {
-            width: 16px;
-            height: 16px;
-            min-width: 16px;
-            margin-top: 1px;
-            accent-color: #ffd54a;
-        }
-
-        .terms a {
-            color: #ffd54a;
-            text-decoration: none;
+            color: #625b6c;
         }
 
         .register-btn {
             width: 100%;
-            height: 54px;
+            height: 51px;
             border: none;
-            border-radius: 14px;
-            background: linear-gradient(
-                135deg,
-                #ffd54a,
-                #ff9e00
-            );
+            border-radius: 13px;
+            margin-top: 5px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffd54a,
+                    #ff9e00
+                );
             color: #170d00;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 900;
             cursor: pointer;
-            box-shadow:
-                0 8px 25px rgba(255, 158, 0, 0.18);
-        }
-
-        .register-btn:active {
-            transform: scale(0.98);
         }
 
         .register-btn:disabled {
-            opacity: 0.6;
+            opacity: 0.55;
             cursor: not-allowed;
         }
 
         .message {
-            display: none;
-            margin-top: 15px;
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 13px;
-            line-height: 1.4;
+            min-height: 20px;
+            margin-top: 13px;
             text-align: center;
-        }
-
-        .message.error {
-            display: block;
-            background: rgba(239, 68, 68, 0.10);
-            border: 1px solid rgba(239, 68, 68, 0.25);
-            color: #ff8585;
-        }
-
-        .message.success {
-            display: block;
-            background: rgba(34, 197, 94, 0.10);
-            border: 1px solid rgba(34, 197, 94, 0.25);
-            color: #72e69a;
+            font-size: 12px;
+            line-height: 1.4;
         }
 
         .login-text {
             text-align: center;
-            margin-top: 22px;
             color: #81798d;
-            font-size: 13px;
+            font-size: 12px;
+            margin-top: 20px;
         }
 
         .login-text a {
             color: #ffd54a;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 800;
         }
 
         .footer {
             text-align: center;
-            color: #5f586b;
-            font-size: 11px;
-            padding-top: 10px;
+            color: #625b6c;
+            font-size: 10px;
+            margin-top: 22px;
         }
     </style>
 </head>
@@ -237,42 +172,37 @@
 
 <div class="page">
 
-    <div class="topbar">
+    <div class="logo">
+        Chery<span>Spin</span>
+    </div>
 
-        <div class="brand">
-            Chery<span>Spin</span>
-        </div>
-
-        <a href="./index.html" class="back">
-            Back
-        </a>
-
+    <div class="subtitle">
+        Create your CherySpin account
     </div>
 
 
-    <div class="content">
+    <div class="card">
 
-        <h1 class="title">
+        <div class="title">
             Create Account
-        </h1>
+        </div>
 
-        <p class="subtitle">
-            Create your CherySpin account and start your journey.
-        </p>
+        <div class="description">
+            Register your account to continue to CherySpin.
+        </div>
 
 
         <form id="registerForm">
 
             <div class="form-group">
 
-                <label for="name">
+                <label for="fullName">
                     Full Name
                 </label>
 
                 <input
                     type="text"
-                    id="name"
-                    name="name"
+                    id="fullName"
                     placeholder="Enter your full name"
                     autocomplete="name"
                     required
@@ -290,8 +220,7 @@
                 <input
                     type="tel"
                     id="phone"
-                    name="phone"
-                    placeholder="e.g. 0712345678"
+                    placeholder="Enter your phone number"
                     autocomplete="tel"
                     required
                 >
@@ -305,106 +234,50 @@
                     Password
                 </label>
 
-                <div class="password-wrapper">
-
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Create a password"
-                        autocomplete="new-password"
-                        minlength="6"
-                        required
-                    >
-
-                    <button
-                        type="button"
-                        class="show-password"
-                        onclick="togglePassword('password', this)"
-                    >
-                        SHOW
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="confirmPassword">
-                    Confirm Password
-                </label>
-
-                <div class="password-wrapper">
-
-                    <input
-                        type="password"
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        placeholder="Repeat your password"
-                        autocomplete="new-password"
-                        minlength="6"
-                        required
-                    >
-
-                    <button
-                        type="button"
-                        class="show-password"
-                        onclick="togglePassword('confirmPassword', this)"
-                    >
-                        SHOW
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <label class="terms">
-
                 <input
-                    type="checkbox"
-                    id="terms"
+                    type="password"
+                    id="password"
+                    placeholder="Create a password"
+                    autocomplete="new-password"
+                    minlength="6"
                     required
                 >
 
-                <span>
-                    I agree to the CherySpin terms and conditions.
-                </span>
-
-            </label>
+            </div>
 
 
             <button
                 type="submit"
                 class="register-btn"
-                id="registerBtn"
+                id="registerButton"
             >
-                Create Account
+                CREATE ACCOUNT
             </button>
 
 
             <div
-                id="message"
                 class="message"
+                id="message"
             ></div>
 
         </form>
 
 
         <div class="login-text">
+
             Already have an account?
+
             <a href="./login.html">
                 Login
             </a>
+
         </div>
 
     </div>
 
 
     <div class="footer">
-        © 2026 CherySpin
+        CherySpin
     </div>
 
 </div>
@@ -412,34 +285,27 @@
 
 <script>
 
-    function togglePassword(id, button) {
-
-        const input = document.getElementById(id);
-
-        if (input.type === "password") {
-            input.type = "text";
-            button.textContent = "HIDE";
-        } else {
-            input.type = "password";
-            button.textContent = "SHOW";
-        }
-
-    }
+    const API_URL =
+        "https://cheryspin-backend-1.onrender.com";
 
 
-    const form = document.getElementById("registerForm");
+    const form =
+        document.getElementById("registerForm");
 
-    const message = document.getElementById("message");
+    const button =
+        document.getElementById("registerButton");
 
-    const registerBtn = document.getElementById("registerBtn");
+    const message =
+        document.getElementById("message");
 
 
-    form.addEventListener("submit", function(event) {
+    form.addEventListener("submit", async function(event) {
 
         event.preventDefault();
 
-        const name =
-            document.getElementById("name").value.trim();
+
+        const fullName =
+            document.getElementById("fullName").value.trim();
 
         const phone =
             document.getElementById("phone").value.trim();
@@ -447,19 +313,14 @@
         const password =
             document.getElementById("password").value;
 
-        const confirmPassword =
-            document.getElementById("confirmPassword").value;
 
+        if (!fullName || !phone || !password) {
 
-        message.className = "message";
-        message.textContent = "";
-
-
-        if (password !== confirmPassword) {
-
-            message.className = "message error";
             message.textContent =
-                "Passwords do not match.";
+                "Please complete all fields.";
+
+            message.style.color =
+                "#ff9e9e";
 
             return;
         }
@@ -467,49 +328,89 @@
 
         if (password.length < 6) {
 
-            message.className = "message error";
             message.textContent =
                 "Password must be at least 6 characters.";
+
+            message.style.color =
+                "#ff9e9e";
 
             return;
         }
 
 
-        registerBtn.disabled = true;
-        registerBtn.textContent = "Creating Account...";
+        button.disabled = true;
+
+        button.textContent =
+            "CREATING ACCOUNT...";
+
+        message.textContent =
+            "Please wait...";
+
+        message.style.color =
+            "#ffd54a";
 
 
-        /*
-         * Temporary registration preview.
-         *
-         * We will connect this form to the
-         * CherySpin backend after the backend
-         * is created.
-         */
+        try {
 
-        setTimeout(function() {
+            const response =
+                await fetch(
+                    API_URL + "/api/register",
+                    {
+                        method: "POST",
 
-            localStorage.setItem(
-                "cherySpinName",
-                name
-            );
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
 
-            localStorage.setItem(
-                "cherySpinPhone",
-                phone
-            );
+                        body: JSON.stringify({
+                            full_name: fullName,
+                            phone: phone,
+                            password: password
+                        })
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok || !data.success) {
+
+                throw new Error(
+                    data.message ||
+                    "Registration failed."
+                );
+
+            }
+
 
             localStorage.setItem(
                 "cherySpinLoggedIn",
                 "true"
             );
 
+            localStorage.setItem(
+                "cherySpinUserId",
+                data.user.id
+            );
 
-            message.className =
-                "message success";
+            localStorage.setItem(
+                "cherySpinName",
+                data.user.full_name
+            );
+
+            localStorage.setItem(
+                "cherySpinPhone",
+                data.user.phone
+            );
+
 
             message.textContent =
-                "Account created successfully!";
+                "Account created successfully.";
+
+            message.style.color =
+                "#ffd54a";
 
 
             setTimeout(function() {
@@ -519,11 +420,34 @@
 
             }, 700);
 
-        }, 500);
+
+        } catch (error) {
+
+            console.error(
+                "Registration error:",
+                error
+            );
+
+
+            message.textContent =
+                error.message ||
+                "Unable to connect to the server.";
+
+            message.style.color =
+                "#ff9e9e";
+
+
+            button.disabled = false;
+
+            button.textContent =
+                "CREATE ACCOUNT";
+
+        }
 
     });
 
 </script>
 
 </body>
+
 </html>
