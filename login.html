@@ -152,11 +152,12 @@
             height: 54px;
             border: none;
             border-radius: 14px;
-            background: linear-gradient(
-                135deg,
-                #ffd54a,
-                #ff9e00
-            );
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffd54a,
+                    #ff9e00
+                );
             color: #170d00;
             font-size: 16px;
             font-weight: 900;
@@ -248,7 +249,10 @@
             Chery<span>Spin</span>
         </div>
 
-        <a href="./index.html" class="back">
+        <a
+            href="./index.html"
+            class="back"
+        >
             Register
         </a>
 
@@ -268,24 +272,26 @@
 
         <form id="loginForm">
 
+            <!-- Email or Phone -->
             <div class="form-group">
 
-                <label for="phone">
-                    Phone Number
+                <label for="identifier">
+                    Email or Phone Number
                 </label>
 
                 <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    placeholder="Enter your phone number"
-                    autocomplete="tel"
+                    type="text"
+                    id="identifier"
+                    name="identifier"
+                    placeholder="Enter email or phone number"
+                    autocomplete="username"
                     required
                 >
 
             </div>
 
 
+            <!-- Password -->
             <div class="form-group">
 
                 <label for="password">
@@ -371,37 +377,47 @@
     function togglePassword() {
 
         const input =
-            document.getElementById("password");
+            document.getElementById(
+                "password"
+            );
 
         const button =
-            document.querySelector(".show-password");
+            document.querySelector(
+                ".show-password"
+            );
 
 
         if (input.type === "password") {
 
             input.type = "text";
 
-            button.textContent = "HIDE";
+            button.textContent =
+                "HIDE";
 
         } else {
 
             input.type = "password";
 
-            button.textContent = "SHOW";
-
+            button.textContent =
+                "SHOW";
         }
-
     }
 
 
     const form =
-        document.getElementById("loginForm");
+        document.getElementById(
+            "loginForm"
+        );
 
     const message =
-        document.getElementById("message");
+        document.getElementById(
+            "message"
+        );
 
     const loginBtn =
-        document.getElementById("loginBtn");
+        document.getElementById(
+            "loginBtn"
+        );
 
 
     function showMessage(
@@ -409,11 +425,11 @@
         type
     ) {
 
-        message.textContent = text;
+        message.textContent =
+            text;
 
         message.className =
             "message " + type;
-
     }
 
 
@@ -424,22 +440,30 @@
             event.preventDefault();
 
 
-            const phone =
+            const identifier =
                 document
-                    .getElementById("phone")
+                    .getElementById(
+                        "identifier"
+                    )
                     .value
                     .trim();
 
+
             const password =
                 document
-                    .getElementById("password")
+                    .getElementById(
+                        "password"
+                    )
                     .value;
 
 
-            if (!phone || !password) {
+            if (
+                !identifier ||
+                !password
+            ) {
 
                 showMessage(
-                    "Please enter your phone number and password.",
+                    "Please enter your email or phone number and password.",
                     "error"
                 );
 
@@ -447,7 +471,8 @@
             }
 
 
-            loginBtn.disabled = true;
+            loginBtn.disabled =
+                true;
 
             loginBtn.innerHTML =
                 '<span class="loading"></span>LOGGING IN...';
@@ -461,7 +486,8 @@
 
                 const response =
                     await fetch(
-                        API_URL + "/api/login",
+                        API_URL +
+                        "/api/login",
                         {
                             method: "POST",
 
@@ -471,11 +497,13 @@
                             },
 
                             body: JSON.stringify({
-                                phone:
-                                    phone,
+
+                                identifier:
+                                    identifier,
 
                                 password:
                                     password
+
                             })
                         }
                     );
@@ -485,19 +513,21 @@
                     await response.json();
 
 
-                if (!response.ok ||
-                    !data.success) {
+                if (
+                    !response.ok ||
+                    !data.success
+                ) {
 
                     throw new Error(
                         data.message ||
-                        "Invalid phone number or password."
+                        "Invalid email/phone number or password."
                     );
                 }
 
 
                 /*
-                 * Save the real user information
-                 * returned by the backend.
+                 * Save the complete
+                 * authenticated user session.
                  */
 
                 localStorage.setItem(
@@ -507,7 +537,9 @@
 
                 localStorage.setItem(
                     "cherySpinUserId",
-                    String(data.user.id)
+                    String(
+                        data.user.id
+                    )
                 );
 
                 localStorage.setItem(
@@ -516,8 +548,41 @@
                 );
 
                 localStorage.setItem(
+                    "cherySpinAge",
+                    String(
+                        data.user.age
+                    )
+                );
+
+                localStorage.setItem(
+                    "cherySpinEmail",
+                    data.user.email
+                );
+
+                localStorage.setItem(
                     "cherySpinPhone",
                     data.user.phone
+                );
+
+                localStorage.setItem(
+                    "cherySpinBalance",
+                    String(
+                        data.user.balance
+                    )
+                );
+
+                localStorage.setItem(
+                    "cherySpinFreeSpins",
+                    String(
+                        data.user.free_spins
+                    )
+                );
+
+                localStorage.setItem(
+                    "cherySpinActivated",
+                    String(
+                        data.user.is_activated
+                    )
                 );
 
 
@@ -558,7 +623,6 @@
 
                 loginBtn.textContent =
                     "LOGIN";
-
             }
 
         }
