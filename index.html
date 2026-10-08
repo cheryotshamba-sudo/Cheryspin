@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>CherySpin</title>
+    <title>CherySpin - Register</title>
 
     <style>
         * {
@@ -15,20 +18,574 @@
 
         body {
             min-height: 100vh;
-            background: #07030f;
-            color: white;
+            background:
+                radial-gradient(
+                    circle at top,
+                    #241238 0%,
+                    #0e0718 45%,
+                    #07030f 100%
+                );
+            color: #ffffff;
             font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
 
-        /* More code continues here... */
+        .app {
+            width: 100%;
+            max-width: 430px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo h1 {
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo h1 span {
+            color: #ffd54a;
+        }
+
+        .logo p {
+            color: #9d96aa;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .card {
+            background: rgba(18, 10, 34, 0.96);
+            border: 1px solid rgba(255, 213, 74, 0.16);
+            border-radius: 22px;
+            padding: 28px 22px;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .card h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #9d96aa;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .input {
+            width: 100%;
+            height: 52px;
+            border: 1px solid #332344;
+            border-radius: 12px;
+            background: #0d0717;
+            color: #ffffff;
+            padding: 0 15px;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .input:focus {
+            border-color: #ffd54a;
+            box-shadow: 0 0 0 3px rgba(255, 213, 74, 0.08);
+        }
+
+        .input::placeholder {
+            color: #625b6c;
+        }
+
+        .password-wrap {
+            position: relative;
+        }
+
+        .password-wrap .input {
+            padding-right: 55px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #9d96aa;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            height: 54px;
+            margin-top: 8px;
+            border: none;
+            border-radius: 13px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffd54a,
+                    #ff9e00
+                );
+            color: #160c00;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow:
+                0 10px 25px rgba(255, 158, 0, 0.18);
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        .message {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .message.error {
+            display: block;
+            background: rgba(255, 70, 70, 0.10);
+            border: 1px solid rgba(255, 70, 70, 0.25);
+            color: #ff9b9b;
+        }
+
+        .message.success {
+            display: block;
+            background: rgba(34, 197, 94, 0.10);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            color: #7ee2a0;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 22px;
+            color: #9d96aa;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #ffd54a;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .notice {
+            margin-top: 18px;
+            padding: 12px;
+            border-radius: 10px;
+            background: rgba(255, 213, 74, 0.05);
+            border: 1px solid rgba(255, 213, 74, 0.10);
+            color: #81798d;
+            font-size: 11px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(22, 12, 0, 0.3);
+            border-top-color: #160c00;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 380px) {
+            .card {
+                padding: 24px 17px;
+            }
+
+            .logo h1 {
+                font-size: 34px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <div class="app">
-        <h1>Chery<span>Spin</span></h1>
+
+        <div class="logo">
+            <h1>Chery<span>Spin</span></h1>
+            <p>Spin. Play. Enjoy.</p>
+        </div>
+
+        <div class="card">
+
+            <h2>Create Account</h2>
+
+            <p class="subtitle">
+                Register your CherySpin account
+            </p>
+
+            <form id="registerForm">
+
+                <div class="form-group">
+                    <label for="fullName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="fullName"
+                        class="input"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        class="input"
+                        placeholder="Enter your phone number"
+                        autocomplete="tel"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="password-wrap">
+
+                        <input
+                            type="password"
+                            id="password"
+                            class="input"
+                            placeholder="Create a password"
+                            autocomplete="new-password"
+                            minlength="6"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            id="togglePassword"
+                        >
+                            SHOW
+                        </button>
+
+                    </div>
+                </div>
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                    id="registerButton"
+                >
+                    CREATE ACCOUNT
+                </button>
+
+            </form>
+
+            <div
+                id="message"
+                class="message"
+            ></div>
+
+            <div class="login-link">
+                Already have an account?
+                <a href="login.html">
+                    Login
+                </a>
+            </div>
+
+            <div class="notice">
+                By creating an account, you agree to use
+                CherySpin responsibly and according to its
+                terms and applicable laws.
+            </div>
+
+        </div>
+
     </div>
+
+    <script>
+
+        const API_URL =
+            "https://cheryspin-backend-1.onrender.com";
+
+        const registerForm =
+            document.getElementById("registerForm");
+
+        const registerButton =
+            document.getElementById("registerButton");
+
+        const message =
+            document.getElementById("message");
+
+        const passwordInput =
+            document.getElementById("password");
+
+        const togglePassword =
+            document.getElementById("togglePassword");
+
+
+        togglePassword.addEventListener(
+            "click",
+            function () {
+
+                if (
+                    passwordInput.type ===
+                    "password"
+                ) {
+
+                    passwordInput.type =
+                        "text";
+
+                    togglePassword.textContent =
+                        "HIDE";
+
+                } else {
+
+                    passwordInput.type =
+                        "password";
+
+                    togglePassword.textContent =
+                        "SHOW";
+                }
+
+            }
+        );
+
+
+        function showMessage(
+            text,
+            type
+        ) {
+
+            message.textContent = text;
+
+            message.className =
+                "message " + type;
+        }
+
+
+        registerForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+                const fullName =
+                    document
+                        .getElementById("fullName")
+                        .value
+                        .trim();
+
+                const phone =
+                    document
+                        .getElementById("phone")
+                        .value
+                        .trim();
+
+                const password =
+                    passwordInput.value;
+
+
+                if (!fullName) {
+
+                    showMessage(
+                        "Please enter your full name.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                if (!phone) {
+
+                    showMessage(
+                        "Please enter your phone number.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                if (password.length < 6) {
+
+                    showMessage(
+                        "Password must be at least 6 characters.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                registerButton.disabled =
+                    true;
+
+                registerButton.innerHTML =
+                    '<span class="loading"></span>CREATING...';
+
+                message.className =
+                    "message";
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            API_URL +
+                            "/api/register",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body: JSON.stringify({
+                                    full_name:
+                                        fullName,
+
+                                    phone:
+                                        phone,
+
+                                    password:
+                                        password
+                                })
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (!response.ok ||
+                        !data.success) {
+
+                        throw new Error(
+                            data.message ||
+                            "Unable to create account."
+                        );
+                    }
+
+
+                    /*
+                     * Save the logged-in user
+                     * information locally.
+                     */
+
+                    localStorage.setItem(
+                        "cherySpinLoggedIn",
+                        "true"
+                    );
+
+                    localStorage.setItem(
+                        "cherySpinUserId",
+                        String(data.user.id)
+                    );
+
+                    localStorage.setItem(
+                        "cherySpinName",
+                        data.user.full_name
+                    );
+
+                    localStorage.setItem(
+                        "cherySpinPhone",
+                        data.user.phone
+                    );
+
+
+                    showMessage(
+                        "Account created successfully. Opening CherySpin...",
+                        "success"
+                    );
+
+
+                    setTimeout(
+                        function () {
+
+                            window.location.href =
+                                "dashboard.html";
+
+                        },
+                        700
+                    );
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Registration error:",
+                        error
+                    );
+
+                    showMessage(
+                        error.message ||
+                        "Unable to connect to the CherySpin server.",
+                        "error"
+                    );
+
+                    registerButton.disabled =
+                        false;
+
+                    registerButton.textContent =
+                        "CREATE ACCOUNT";
+                }
+
+            }
+        );
+
+    </script>
 
 </body>
 </html>
