@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <meta name="theme-color" content="#120a22">
+
+    <title>CherySpin - Register</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at top,
+                    #241238 0%,
+                    #0e0718 45%,
+                    #07030f 100%
+                );
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 430px;
+            min-height: 100vh;
+            margin: auto;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            font-size: 21px;
+            font-weight: 900;
+        }
+
+        .brand span {
+            color: #ffd54a;
+        }
+
+        .back {
+            color: #9d96aa;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 35px 0;
+        }
+
+        .title {
+            font-size: 30px;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #9d96aa;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            color: #d8d2df;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            height: 52px;
+            padding: 0 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 213, 74, 0.13);
+            outline: none;
+            background: #120a22;
+            color: #ffffff;
+            font-size: 15px;
+        }
+
+        input:focus {
+            border-color: #ffd54a;
+        }
+
+        input::placeholder {
+            color: #655e70;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            padding-right: 55px;
+        }
+
+        .show-password {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            color: #ffd54a;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            margin: 5px 0 20px;
+            color: #81798d;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .terms input {
+            width: 16px;
+            height: 16px;
+            min-width: 16px;
+            margin-top: 1px;
+            accent-color: #ffd54a;
+        }
+
+        .terms a {
+            color: #ffd54a;
+            text-decoration: none;
+        }
+
+        .register-btn {
+            width: 100%;
+            height: 54px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(
+                135deg,
+                #ffd54a,
+                #ff9e00
+            );
+            color: #170d00;
+            font-size: 16px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow:
+                0 8px 25px rgba(255, 158, 0, 0.18);
+        }
+
+        .register-btn:active {
+            transform: scale(0.98);
+        }
+
+        .register-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .message.error {
+            display: block;
+            background: rgba(239, 68, 68, 0.10);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            color: #ff8585;
+        }
+
+        .message.success {
+            display: block;
+            background: rgba(34, 197, 94, 0.10);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            color: #72e69a;
+        }
+
+        .login-text {
+            text-align: center;
+            margin-top: 22px;
+            color: #81798d;
+            font-size: 13px;
+        }
+
+        .login-text a {
+            color: #ffd54a;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .footer {
+            text-align: center;
+            color: #5f586b;
+            font-size: 11px;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="topbar">
+
+        <div class="brand">
+            Chery<span>Spin</span>
+        </div>
+
+        <a href="./index.html" class="back">
+            Back
+        </a>
+
+    </div>
+
+
+    <div class="content">
+
+        <h1 class="title">
+            Create Account
+        </h1>
+
+        <p class="subtitle">
+            Create your CherySpin account and start your journey.
+        </p>
+
+
+        <form id="registerForm">
+
+            <div class="form-group">
+
+                <label for="name">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="phone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="e.g. 0712345678"
+                    autocomplete="tel"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="show-password"
+                        onclick="togglePassword('password', this)"
+                    >
+                        SHOW
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="confirmPassword">
+                    Confirm Password
+                </label>
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        placeholder="Repeat your password"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="show-password"
+                        onclick="togglePassword('confirmPassword', this)"
+                    >
+                        SHOW
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <label class="terms">
+
+                <input
+                    type="checkbox"
+                    id="terms"
+                    required
+                >
+
+                <span>
+                    I agree to the CherySpin terms and conditions.
+                </span>
+
+            </label>
+
+
+            <button
+                type="submit"
+                class="register-btn"
+                id="registerBtn"
+            >
+                Create Account
+            </button>
+
+
+            <div
+                id="message"
+                class="message"
+            ></div>
+
+        </form>
+
+
+        <div class="login-text">
+            Already have an account?
+            <a href="./login.html">
+                Login
+            </a>
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+        © 2026 CherySpin
+    </div>
+
+</div>
+
+
+<script>
+
+    function togglePassword(id, button) {
+
+        const input = document.getElementById(id);
+
+        if (input.type === "password") {
+            input.type = "text";
+            button.textContent = "HIDE";
+        } else {
+            input.type = "password";
+            button.textContent = "SHOW";
+        }
+
+    }
+
+
+    const form = document.getElementById("registerForm");
+
+    const message = document.getElementById("message");
+
+    const registerBtn = document.getElementById("registerBtn");
+
+
+    form.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const name =
+            document.getElementById("name").value.trim();
+
+        const phone =
+            document.getElementById("phone").value.trim();
+
+        const password =
+            document.getElementById("password").value;
+
+        const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+
+        message.className = "message";
+        message.textContent = "";
+
+
+        if (password !== confirmPassword) {
+
+            message.className = "message error";
+            message.textContent =
+                "Passwords do not match.";
+
+            return;
+        }
+
+
+        if (password.length < 6) {
+
+            message.className = "message error";
+            message.textContent =
+                "Password must be at least 6 characters.";
+
+            return;
+        }
+
+
+        registerBtn.disabled = true;
+        registerBtn.textContent = "Creating Account...";
+
+
+        /*
+         * Temporary registration preview.
+         *
+         * We will connect this form to the
+         * CherySpin backend after the backend
+         * is created.
+         */
+
+        setTimeout(function() {
+
+            localStorage.setItem(
+                "cherySpinName",
+                name
+            );
+
+            localStorage.setItem(
+                "cherySpinPhone",
+                phone
+            );
+
+            localStorage.setItem(
+                "cherySpinLoggedIn",
+                "true"
+            );
+
+
+            message.className =
+                "message success";
+
+            message.textContent =
+                "Account created successfully!";
+
+
+            setTimeout(function() {
+
+                window.location.href =
+                    "./dashboard.html";
+
+            }, 700);
+
+        }, 500);
+
+    });
+
+</script>
+
+</body>
+</html>
