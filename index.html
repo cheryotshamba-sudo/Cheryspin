@@ -8,7 +8,10 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <meta name="theme-color" content="#120a22">
+    <meta
+        name="theme-color"
+        content="#120a22"
+    >
 
     <title>Chat & Earn - CherySpin</title>
 
@@ -97,8 +100,7 @@
             margin-bottom: 8px;
         }
 
-        input,
-        select {
+        input {
             width: 100%;
             height: 52px;
             border: 1px solid #332344;
@@ -110,8 +112,7 @@
             outline: none;
         }
 
-        input:focus,
-        select:focus {
+        input:focus {
             border-color: #ffd54a;
         }
 
@@ -119,41 +120,13 @@
             color: #625b6c;
         }
 
-        input[readonly] {
-            color: #ffd54a;
-            font-weight: 700;
-            cursor: default;
-        }
-
-        select {
-            appearance: none;
-            -webkit-appearance: none;
-            background-image:
-                linear-gradient(
-                    45deg,
-                    transparent 50%,
-                    #ffd54a 50%
-                ),
-                linear-gradient(
-                    135deg,
-                    #ffd54a 50%,
-                    transparent 50%
-                );
-            background-position:
-                calc(100% - 19px) 22px,
-                calc(100% - 13px) 22px;
-            background-size:
-                6px 6px,
-                6px 6px;
-            background-repeat: no-repeat;
-        }
-
-        select option {
-            background: #120a22;
-            color: #ffffff;
-        }
-
         .age-hint {
+            color: #625b6c;
+            font-size: 11px;
+            margin-top: 6px;
+        }
+
+        .password-hint {
             color: #625b6c;
             font-size: 11px;
             margin-top: 6px;
@@ -251,6 +224,7 @@
         }
 
         @media (max-width: 380px) {
+
             body {
                 padding: 15px;
             }
@@ -341,265 +315,20 @@
             </div>
 
 
-            <!-- Gender -->
+            <!-- Email -->
             <div class="form-group">
 
-                <label for="gender">
-                    Gender
-                </label>
-
-                <select
-                    id="gender"
-                    required
-                >
-
-                    <option value="">
-                        Select Gender
-                    </option>
-
-                    <option value="Male">
-                        Male
-                    </option>
-
-                    <option value="Female">
-                        Female
-                    </option>
-
-                    <option value="Other">
-                        Other
-                    </option>
-
-                    <option value="Prefer not to say">
-                        Prefer not to say
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- Country -->
-            <div class="form-group">
-
-                <label for="country">
-                    Country
+                <label for="email">
+                    Email
                 </label>
 
                 <input
-                    type="text"
-                    id="country"
-                    value="Kenya"
-                    readonly
-                >
-
-            </div>
-
-
-            <!-- County -->
-            <div class="form-group">
-
-                <label for="county">
-                    County
-                </label>
-
-                <select
-                    id="county"
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    autocomplete="email"
                     required
                 >
-
-                    <option value="">
-                        Select County
-                    </option>
-
-                    <option value="Baringo">
-                        Baringo
-                    </option>
-
-                    <option value="Bomet">
-                        Bomet
-                    </option>
-
-                    <option value="Bungoma">
-                        Bungoma
-                    </option>
-
-                    <option value="Busia">
-                        Busia
-                    </option>
-
-                    <option value="Elgeyo-Marakwet">
-                        Elgeyo-Marakwet
-                    </option>
-
-                    <option value="Embu">
-                        Embu
-                    </option>
-
-                    <option value="Garissa">
-                        Garissa
-                    </option>
-
-                    <option value="Homa Bay">
-                        Homa Bay
-                    </option>
-
-                    <option value="Isiolo">
-                        Isiolo
-                    </option>
-
-                    <option value="Kajiado">
-                        Kajiado
-                    </option>
-
-                    <option value="Kakamega">
-                        Kakamega
-                    </option>
-
-                    <option value="Kericho">
-                        Kericho
-                    </option>
-
-                    <option value="Kiambu">
-                        Kiambu
-                    </option>
-
-                    <option value="Kilifi">
-                        Kilifi
-                    </option>
-
-                    <option value="Kirinyaga">
-                        Kirinyaga
-                    </option>
-
-                    <option value="Kisii">
-                        Kisii
-                    </option>
-
-                    <option value="Kisumu">
-                        Kisumu
-                    </option>
-
-                    <option value="Kitui">
-                        Kitui
-                    </option>
-
-                    <option value="Kwale">
-                        Kwale
-                    </option>
-
-                    <option value="Laikipia">
-                        Laikipia
-                    </option>
-
-                    <option value="Lamu">
-                        Lamu
-                    </option>
-
-                    <option value="Machakos">
-                        Machakos
-                    </option>
-
-                    <option value="Makueni">
-                        Makueni
-                    </option>
-
-                    <option value="Mandera">
-                        Mandera
-                    </option>
-
-                    <option value="Marsabit">
-                        Marsabit
-                    </option>
-
-                    <option value="Meru">
-                        Meru
-                    </option>
-
-                    <option value="Migori">
-                        Migori
-                    </option>
-
-                    <option value="Mombasa">
-                        Mombasa
-                    </option>
-
-                    <option value="Murang'a">
-                        Murang'a
-                    </option>
-
-                    <option value="Nairobi">
-                        Nairobi
-                    </option>
-
-                    <option value="Nakuru">
-                        Nakuru
-                    </option>
-
-                    <option value="Nandi">
-                        Nandi
-                    </option>
-
-                    <option value="Narok">
-                        Narok
-                    </option>
-
-                    <option value="Nyamira">
-                        Nyamira
-                    </option>
-
-                    <option value="Nyandarua">
-                        Nyandarua
-                    </option>
-
-                    <option value="Nyeri">
-                        Nyeri
-                    </option>
-
-                    <option value="Samburu">
-                        Samburu
-                    </option>
-
-                    <option value="Siaya">
-                        Siaya
-                    </option>
-
-                    <option value="Taita-Taveta">
-                        Taita-Taveta
-                    </option>
-
-                    <option value="Tana River">
-                        Tana River
-                    </option>
-
-                    <option value="Tharaka-Nithi">
-                        Tharaka-Nithi
-                    </option>
-
-                    <option value="Trans Nzoia">
-                        Trans Nzoia
-                    </option>
-
-                    <option value="Turkana">
-                        Turkana
-                    </option>
-
-                    <option value="Uasin Gishu">
-                        Uasin Gishu
-                    </option>
-
-                    <option value="Vihiga">
-                        Vihiga
-                    </option>
-
-                    <option value="Wajir">
-                        Wajir
-                    </option>
-
-                    <option value="West Pokot">
-                        West Pokot
-                    </option>
-
-                </select>
 
             </div>
 
@@ -618,6 +347,48 @@
                     autocomplete="tel"
                     maxlength="10"
                     inputmode="numeric"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Password -->
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Create a password"
+                    autocomplete="new-password"
+                    minlength="6"
+                    required
+                >
+
+                <div class="password-hint">
+                    Password must be at least 6 characters.
+                </div>
+
+            </div>
+
+
+            <!-- Confirm Password -->
+            <div class="form-group">
+
+                <label for="confirmPassword">
+                    Confirm Password
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm your password"
+                    autocomplete="new-password"
+                    minlength="6"
                     required
                 >
 
@@ -700,6 +471,7 @@
                     .value
                     .trim();
 
+
             const age =
                 Number(
                     document
@@ -707,18 +479,14 @@
                         .value
                 );
 
-            const gender =
-                document
-                    .getElementById("gender")
-                    .value;
 
-            const country =
-                "Kenya";
-
-            const county =
+            const email =
                 document
-                    .getElementById("county")
-                    .value;
+                    .getElementById("email")
+                    .value
+                    .trim()
+                    .toLowerCase();
+
 
             const phone =
                 document
@@ -726,6 +494,22 @@
                     .value
                     .trim();
 
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
+
+
+            const confirmPassword =
+                document
+                    .getElementById("confirmPassword")
+                    .value;
+
+
+            /* =========================
+               VALIDATE NAME
+            ========================= */
 
             if (!fullName) {
 
@@ -736,6 +520,10 @@
                 return;
             }
 
+
+            /* =========================
+               VALIDATE AGE
+            ========================= */
 
             if (
                 !Number.isInteger(age) ||
@@ -751,25 +539,27 @@
             }
 
 
-            if (!gender) {
+            /* =========================
+               VALIDATE EMAIL
+            ========================= */
+
+            const emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+            if (!emailPattern.test(email)) {
 
                 showError(
-                    "Please select your gender."
+                    "Please enter a valid email address."
                 );
 
                 return;
             }
 
 
-            if (!county) {
-
-                showError(
-                    "Please select your county."
-                );
-
-                return;
-            }
-
+            /* =========================
+               VALIDATE PHONE
+            ========================= */
 
             if (!/^07\d{8}$/.test(phone)) {
 
@@ -780,6 +570,38 @@
                 return;
             }
 
+
+            /* =========================
+               VALIDATE PASSWORD
+            ========================= */
+
+            if (password.length < 6) {
+
+                showError(
+                    "Password must be at least 6 characters."
+                );
+
+                return;
+            }
+
+
+            /* =========================
+               CONFIRM PASSWORD
+            ========================= */
+
+            if (password !== confirmPassword) {
+
+                showError(
+                    "Passwords do not match."
+                );
+
+                return;
+            }
+
+
+            /* =========================
+               START REQUEST
+            ========================= */
 
             continueBtn.disabled =
                 true;
@@ -810,20 +632,20 @@
                                 full_name:
                                     fullName,
 
-                                phone:
-                                    phone,
-
                                 age:
                                     age,
 
-                                gender:
-                                    gender,
+                                email:
+                                    email,
 
-                                country:
-                                    country,
+                                phone:
+                                    phone,
 
-                                county:
-                                    county
+                                password:
+                                    password,
+
+                                confirm_password:
+                                    confirmPassword
 
                             })
                         }
@@ -843,49 +665,71 @@
                         data.message ||
                         "Unable to create account."
                     );
+
                 }
 
+
+                /* =========================
+                   SAVE USER SESSION
+                ========================= */
 
                 localStorage.setItem(
                     "cherySpinLoggedIn",
                     "true"
                 );
 
+
                 localStorage.setItem(
                     "cherySpinUserId",
                     String(data.user.id)
                 );
+
 
                 localStorage.setItem(
                     "cherySpinName",
                     data.user.full_name
                 );
 
+
+                localStorage.setItem(
+                    "cherySpinAge",
+                    String(data.user.age)
+                );
+
+
+                localStorage.setItem(
+                    "cherySpinEmail",
+                    data.user.email
+                );
+
+
                 localStorage.setItem(
                     "cherySpinPhone",
                     data.user.phone
                 );
 
-                localStorage.setItem(
-                    "cherySpinAge",
-                    String(age)
-                );
 
                 localStorage.setItem(
-                    "cherySpinGender",
-                    gender
+                    "cherySpinBalance",
+                    String(data.user.balance)
                 );
+
 
                 localStorage.setItem(
-                    "cherySpinCountry",
-                    country
+                    "cherySpinFreeSpins",
+                    String(data.user.free_spins)
                 );
+
 
                 localStorage.setItem(
-                    "cherySpinCounty",
-                    county
+                    "cherySpinActivated",
+                    String(data.user.is_activated)
                 );
 
+
+                /* =========================
+                   GO TO DASHBOARD
+                ========================= */
 
                 window.location.href =
                     "./dashboard.html";
@@ -910,6 +754,7 @@
 
                 continueBtn.textContent =
                     "CONTINUE";
+
             }
 
         }
