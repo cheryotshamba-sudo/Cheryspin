@@ -1,626 +1,764 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#111216">
+<title>CherySpin</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    >
+<style>
+:root {
+    --bg: #111216;
+    --panel: #1b1e26;
+    --panel-dark: #15171e;
+    --green: #00c58a;
+    --green-dark: #07976f;
+    --red: #ff3548;
+    --muted: #929bad;
+    --border: #292d38;
+    --white: #f8f9fc;
+}
 
-    <meta name="theme-color" content="#120a22">
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    <title>CherySpin</title>
+body {
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--white);
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+button {
+    font: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
 
-        body {
-            min-height: 100vh;
-            background:
-                radial-gradient(
-                    circle at top,
-                    #241238 0%,
-                    #0e0718 45%,
-                    #07030f 100%
-                );
-            color: #ffffff;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+.app {
+    width: 100%;
+    max-width: 680px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding-bottom: 108px;
+}
 
-        .app {
-            width: 100%;
-            max-width: 430px;
-            min-height: 100vh;
-            margin: auto;
-            padding: 18px;
-            padding-bottom: 30px;
-        }
+/* HEADER */
 
-        /* HEADER */
+.header {
+    min-height: 96px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: #181a21;
+    border-bottom: 1px solid var(--border);
+}
 
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 22px;
-        }
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    font-size: clamp(21px, 5.4vw, 31px);
+    font-weight: 900;
+    letter-spacing: -1px;
+    white-space: nowrap;
+}
 
-        .brand {
-            font-size: 22px;
-            font-weight: 900;
-        }
+.logo {
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    background: var(--green);
+    color: #071b15;
+    font-size: 24px;
+}
 
-        .brand span {
-            color: #ffd54a;
-        }
+.brand .green {
+    color: var(--green);
+}
 
-        .profile-btn {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 213, 74, 0.2);
-            background: #120a22;
-            color: #ffd54a;
-            font-weight: 900;
-            cursor: pointer;
-        }
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
-        /* WELCOME */
+.header-btn {
+    min-width: 46px;
+    height: 49px;
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    background: #1c202a;
+    color: var(--green);
+    border: 1px solid #303646;
+    border-radius: 13px;
+    cursor: pointer;
+}
 
-        .welcome {
-            margin-bottom: 16px;
-        }
+.spins-pill {
+    color: var(--red);
+    border-color: #58303b;
+    font-size: 16px;
+    font-weight: 800;
+    white-space: nowrap;
+}
 
-        .welcome small {
-            color: #81798d;
-            font-size: 12px;
-        }
+.header-btn svg {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+}
 
-        .welcome h1 {
-            margin-top: 5px;
-            font-size: 25px;
-            font-weight: 900;
-        }
+.logout-btn {
+    color: #b4bdcf;
+}
 
-        /* BALANCE */
+/* BALANCE */
 
-        .balance-card {
-            background:
-                linear-gradient(
-                    135deg,
-                    #1c102f,
-                    #10071c
-                );
-            border: 1px solid rgba(255, 213, 74, 0.14);
-            border-radius: 18px;
-            padding: 20px;
-            margin-bottom: 14px;
-            box-shadow:
-                0 15px 35px rgba(0, 0, 0, 0.25);
-        }
+main {
+    padding: 22px 27px 0;
+}
 
-        .balance-label {
-            color: #9d96aa;
-            font-size: 12px;
-        }
+.balance-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 23px 20px;
+    min-height: 138px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 21px;
+    margin-bottom: 20px;
+}
 
-        .balance {
-            margin-top: 7px;
-            font-size: 34px;
-            font-weight: 900;
-            color: #ffd54a;
-        }
+.balance-icon {
+    width: 62px;
+    height: 62px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border: 1px solid #155b4b;
+    border-radius: 14px;
+    color: var(--green);
+    background: #102a26;
+    font-size: 29px;
+}
 
-        .balance-note {
-            margin-top: 5px;
-            color: #81798d;
-            font-size: 11px;
-        }
+.balance-content {
+    min-width: 0;
+    flex: 1;
+}
 
-        /* SPINS */
+.balance-label {
+    color: var(--muted);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 11px;
+    white-space: nowrap;
+}
 
-        .spin-info {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #120a22;
-            border: 1px solid rgba(255, 213, 74, 0.1);
-            border-radius: 14px;
-            padding: 15px;
-            margin-bottom: 22px;
-        }
+.balance {
+    font-size: clamp(25px, 6vw, 36px);
+    line-height: 1.1;
+    font-weight: 900;
+    white-space: nowrap;
+}
 
-        .spin-info-text strong {
-            display: block;
-            font-size: 15px;
-        }
+.deposit-btn {
+    min-height: 58px;
+    padding: 0 17px;
+    border: 0;
+    border-radius: 13px;
+    background: var(--green);
+    color: #031b14;
+    font-weight: 900;
+    font-size: 16px;
+    cursor: pointer;
+    white-space: nowrap;
+}
 
-        .spin-info-text small {
-            display: block;
-            color: #81798d;
-            margin-top: 4px;
-            font-size: 11px;
-        }
+.deposit-btn span {
+    margin-right: 5px;
+}
 
-        .spin-count {
-            color: #ffd54a;
-            font-size: 24px;
-            font-weight: 900;
-        }
+/* FREE SPINS */
 
-        /* WHEEL */
+.spin-info {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-height: 114px;
+    padding: 18px 17px;
+    margin-bottom: 15px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 7px solid var(--red);
+    border-radius: 15px;
+}
 
-        .wheel-section {
-            text-align: center;
-        }
+.sparkle {
+    color: var(--red);
+    font-size: 27px;
+    flex-shrink: 0;
+}
 
-        .wheel-section h2 {
-            font-size: 20px;
-            margin-bottom: 5px;
-        }
+.spin-info-text {
+    flex: 1;
+    min-width: 0;
+    font-size: 16px;
+    line-height: 1.45;
+}
 
-        .wheel-section p {
-            color: #81798d;
-            font-size: 12px;
-            margin-bottom: 22px;
-        }
+.spin-info-text strong {
+    font-weight: 800;
+}
 
-        .wheel-wrapper {
-            position: relative;
-            width: 260px;
-            height: 260px;
-            margin: 0 auto 22px;
-        }
+.red {
+    color: var(--red);
+}
 
-        .pointer {
-            position: absolute;
-            z-index: 5;
-            top: -7px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 12px solid transparent;
-            border-right: 12px solid transparent;
-            border-top: 25px solid #ffd54a;
-            filter: drop-shadow(0 3px 5px rgba(0,0,0,.5));
-        }
+.spin-count {
+    flex-shrink: 0;
+    color: #ff6673;
+    background: #302027;
+    border: 1px solid #66313d;
+    border-radius: 8px;
+    padding: 7px 10px;
+    font-size: 20px;
+    font-weight: 900;
+    white-space: nowrap;
+}
 
-        .wheel {
-            width: 260px;
-            height: 260px;
-            border-radius: 50%;
-            border: 8px solid #ffd54a;
-            background:
-                conic-gradient(
-                    #ff9e00 0deg 45deg,
-                    #241238 45deg 90deg,
-                    #ffd54a 90deg 135deg,
-                    #120a22 135deg 180deg,
-                    #ff9e00 180deg 225deg,
-                    #241238 225deg 270deg,
-                    #ffd54a 270deg 315deg,
-                    #120a22 315deg 360deg
-                );
-            box-shadow:
-                0 0 30px rgba(255, 174, 0, 0.18),
-                inset 0 0 20px rgba(0,0,0,.35);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 4s cubic-bezier(.12,.75,.16,1);
-        }
+/* PRIZE WHEEL */
 
-        .wheel-center {
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-            background: #07030f;
-            border: 4px solid #ffd54a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffd54a;
-            font-size: 12px;
-            font-weight: 900;
-        }
+.wheel-section {
+    text-align: center;
+    padding: 0 0 32px;
+}
 
-        .spin-btn {
-            width: 190px;
-            height: 52px;
-            border: none;
-            border-radius: 14px;
-            background:
-                linear-gradient(
-                    135deg,
-                    #ffd54a,
-                    #ff9e00
-                );
-            color: #170d00;
-            font-size: 16px;
-            font-weight: 900;
-            cursor: pointer;
-            box-shadow:
-                0 8px 25px rgba(255, 158, 0, .2);
-        }
+.wheel-wrapper {
+    position: relative;
+    width: min(82vw, 420px);
+    aspect-ratio: 1;
+    margin: 0 auto 32px;
+    padding: 12px;
+    border: 8px solid #242936;
+    border-radius: 50%;
+    background: #171a22;
+    box-shadow: 0 0 0 2px #303542,
+                0 12px 28px #0005;
+}
 
-        .spin-btn:disabled {
-            opacity: .5;
-            cursor: not-allowed;
-        }
+.pointer {
+    position: absolute;
+    z-index: 5;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 19px solid transparent;
+    border-right: 19px solid transparent;
+    border-top: 34px solid var(--red);
+    filter: drop-shadow(0 3px 4px #0008);
+}
 
-        /* WITHDRAWAL */
+.wheel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 5px solid var(--green);
+    background: conic-gradient(
+        from -30deg,
+        #397ff0 0deg 60deg,
+        #f23d43 60deg 120deg,
+        #10bd8b 120deg 180deg,
+        #07976f 180deg 240deg,
+        #ffa900 240deg 300deg,
+        #252936 300deg 360deg
+    );
+    box-shadow: inset 0 0 0 3px #11151d,
+                0 0 0 3px #087f61;
+    transition: transform 4s cubic-bezier(.12,.75,.16,1);
+}
 
-        .withdraw-card {
-            margin-top: 28px;
-            background: #120a22;
-            border: 1px solid rgba(255, 213, 74, 0.1);
-            border-radius: 16px;
-            padding: 17px;
-        }
+.wheel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: repeating-conic-gradient(
+        from -30deg,
+        transparent 0deg 59deg,
+        #111820 59deg 60deg
+    );
+    pointer-events: none;
+}
 
-        .withdraw-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.prize {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    width: 42%;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-origin: left center;
+    color: white;
+    font-size: clamp(12px, 3vw, 17px);
+    font-weight: 900;
+    text-shadow: 0 1px 3px #0005;
+    white-space: nowrap;
+}
 
-        .withdraw-title {
-            font-size: 15px;
-            font-weight: 800;
-        }
+.prize:nth-child(1) {
+    transform: rotate(-90deg) translateX(8px);
+}
 
-        .locked {
-            color: #ffb84d;
-            font-size: 11px;
-            font-weight: 700;
-        }
+.prize:nth-child(2) {
+    transform: rotate(-30deg) translateX(8px);
+}
 
-        .withdraw-text {
-            color: #81798d;
-            font-size: 11px;
-            line-height: 1.5;
-            margin-top: 9px;
-        }
+.prize:nth-child(3) {
+    transform: rotate(30deg) translateX(8px);
+}
 
-        .withdraw-btn {
-            width: 100%;
-            height: 47px;
-            margin-top: 14px;
-            border: 1px solid rgba(255, 213, 74, .1);
-            border-radius: 12px;
-            background: #0d0718;
-            color: #625b6c;
-            font-weight: 800;
-            cursor: not-allowed;
-        }
+.prize:nth-child(4) {
+    transform: rotate(90deg) translateX(8px);
+}
 
-        /* NAVIGATION */
+.prize:nth-child(5) {
+    transform: rotate(150deg) translateX(8px);
+    color: #111820;
+}
 
-        .nav {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-top: 25px;
-        }
+.prize:nth-child(6) {
+    transform: rotate(210deg) translateX(8px);
+    color: #c5cedd;
+}
 
-        .nav-item {
-            text-align: center;
-            padding: 12px 5px;
-            border-radius: 12px;
-            background: #120a22;
-            color: #81798d;
-            font-size: 11px;
-        }
+.wheel-center {
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    width: 27%;
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 3px solid #0e8e69;
+    background: var(--green);
+    color: #031b14;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 900;
+    box-shadow: 0 0 0 4px #10171b;
+    cursor: pointer;
+}
 
-        .nav-item.active {
-            color: #ffd54a;
-            border: 1px solid rgba(255, 213, 74, .12);
-        }
+.play-icon {
+    font-size: 23px;
+    line-height: 1.2;
+}
 
-        /* MESSAGE */
+.center-left {
+    color: #f52f42;
+    font-size: 12px;
+    margin-top: 3px;
+}
 
-        .message {
-            min-height: 18px;
-            margin-top: 14px;
-            text-align: center;
-            color: #ffd54a;
-            font-size: 12px;
-        }
-    </style>
+.spin-btn {
+    width: 100%;
+    min-height: 76px;
+    border: 0;
+    border-radius: 17px;
+    background: var(--green);
+    color: #041c15;
+    font-size: clamp(17px, 4.4vw, 23px);
+    font-weight: 900;
+    box-shadow: 0 8px 24px #00c58a25;
+    cursor: pointer;
+}
+
+.spin-btn:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+.spin-btn .red {
+    color: #f52f42;
+}
+
+.message {
+    min-height: 22px;
+    padding-top: 10px;
+    font-size: 13px;
+    color: var(--green);
+    line-height: 1.4;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav {
+    position: fixed;
+    z-index: 10;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 680px;
+    min-height: 91px;
+    padding: 10px 5px calc(10px + env(safe-area-inset-bottom));
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: #171920;
+    border-top: 1px solid #30333d;
+}
+
+.nav-item {
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    text-align: center;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.nav-icon {
+    font-size: 25px;
+    line-height: 1.1;
+}
+
+.nav-item.active {
+    color: var(--green);
+    font-weight: 800;
+}
+
+.nav-item.locked-nav {
+    color: #747f98;
+}
+
+.lock-symbol {
+    color: #f0c54a;
+    font-size: 12px;
+}
+
+@media (max-width: 380px) {
+    .header {
+        padding: 14px 12px;
+    }
+
+    .logo {
+        width: 43px;
+        height: 46px;
+        font-size: 20px;
+    }
+
+    .brand {
+        gap: 7px;
+        font-size: 20px;
+    }
+
+    .header-actions {
+        gap: 5px;
+    }
+
+    .header-btn {
+        min-width: 37px;
+        height: 43px;
+        padding: 0 7px;
+    }
+
+    .spins-pill {
+        font-size: 13px;
+    }
+
+    main {
+        padding: 17px 14px 0;
+    }
+
+    .balance-card {
+        gap: 10px;
+        padding: 17px 12px;
+    }
+
+    .balance-icon {
+        width: 45px;
+        height: 48px;
+        font-size: 23px;
+    }
+
+    .balance-label {
+        font-size: 11px;
+    }
+
+    .balance {
+        font-size: 25px;
+    }
+
+    .deposit-btn {
+        min-height: 48px;
+        padding: 0 10px;
+        font-size: 13px;
+    }
+
+    .spin-info-text {
+        font-size: 13px;
+    }
+
+    .spin-count {
+        font-size: 16px;
+        padding: 6px;
+    }
+
+    .wheel-wrapper {
+        width: 84vw;
+    }
+}
+</style>
 </head>
 
 <body>
-
 <div class="app">
 
-    <header class="header">
+<header class="header">
+    <div class="brand">
+        <div class="logo">CS</div>
+        <div>Chery<span class="green">Spin</span></div>
+    </div>
 
-        <div class="brand">
-            Chery<span>Spin</span>
-        </div>
-
-        <button
-            class="profile-btn"
-            onclick="showProfile()"
-        >
-            CS
+    <div class="header-actions">
+        <button class="header-btn spins-pill" type="button"
+                onclick="document.getElementById('wheel').scrollIntoView({behavior:'smooth',block:'center'})">
+            <span>⟳</span>
+            <span id="headerSpins">5 Spins</span>
         </button>
 
-    </header>
+        <button class="header-btn" type="button" id="soundButton"
+                aria-label="Toggle sound" onclick="toggleSound()">
+            <svg viewBox="0 0 24 24">
+                <path d="M11 5 6 9H3v6h3l5 4z"/>
+                <path d="M15 9a5 5 0 0 1 0 6"/>
+                <path d="M18 6a9 9 0 0 1 0 12"/>
+            </svg>
+        </button>
 
+        <button class="header-btn logout-btn" type="button"
+                aria-label="Logout" onclick="logout()">
+            <svg viewBox="0 0 24 24">
+                <path d="M10 17l5-5-5-5"/>
+                <path d="M15 12H3"/>
+                <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7"/>
+            </svg>
+        </button>
+    </div>
+</header>
 
-    <section class="welcome">
-
-        <small>Welcome back</small>
-
-        <h1 id="userName">
-            CherySpin Player
-        </h1>
-
-    </section>
-
-
+<main>
     <section class="balance-card">
+        <div class="balance-icon">◉</div>
 
-        <div class="balance-label">
-            Available Balance
+        <div class="balance-content">
+            <div class="balance-label">Total Account Balance</div>
+            <div class="balance">KES 1,500</div>
         </div>
 
-        <div class="balance">
-            KSh 1,500
-        </div>
-
-        <div class="balance-note">
-            Starting balance
-        </div>
-
+        <button class="deposit-btn" type="button" onclick="goDeposit()">
+            <span>↙</span> Deposit
+        </button>
     </section>
-
 
     <section class="spin-info">
+        <div class="sparkle">✧</div>
 
         <div class="spin-info-text">
-
-            <strong>
-                Free Spins
+            <strong>Free Initial Spins:
+                <span class="red" id="inlineSpins">5</span>
+                of 5 spins
             </strong>
-
-            <small>
-                Spins remaining today
-            </small>
-
+            <div>remaining</div>
         </div>
 
-        <div
-            class="spin-count"
-            id="spinCount"
-        >
-            5
-        </div>
-
+        <div class="spin-count" id="spinCount">5 Left</div>
     </section>
-
 
     <section class="wheel-section">
-
-        <h2>
-            Spin & Play
-        </h2>
-
-        <p>
-            Use your free spins to try the wheel.
-        </p>
-
-
         <div class="wheel-wrapper">
-
             <div class="pointer"></div>
 
-            <div
-                class="wheel"
-                id="wheel"
-            >
-                <div class="wheel-center">
-                    SPIN
-                </div>
-            </div>
+            <div class="wheel" id="wheel">
+                <div class="prize">KES 1,000</div>
+                <div class="prize">KES 5,000</div>
+                <div class="prize">KES 50</div>
+                <div class="prize">KES 200</div>
+                <div class="prize">KES 500</div>
+                <div class="prize">Try Again</div>
 
+                <button class="wheel-center" id="centerButton"
+                        type="button" onclick="spinWheel()"
+                        aria-label="Spin wheel">
+                    <span class="play-icon">▶</span>
+                    <span>SPIN</span>
+                    <span class="center-left" id="centerSpins">5 LEFT</span>
+                </button>
+            </div>
         </div>
 
-
-        <button
-            class="spin-btn"
-            id="spinButton"
-            onclick="spinWheel()"
-        >
-            SPIN NOW
+        <button class="spin-btn" id="spinButton" type="button"
+                onclick="spinWheel()">
+            ✧ &nbsp; SPIN FREE (<span class="red" id="buttonSpins">5 LEFT</span>)
         </button>
 
-
-        <div
-            class="message"
-            id="message"
-        ></div>
-
+        <div class="message" id="message" role="status"></div>
     </section>
+</main>
 
+<nav class="bottom-nav">
+    <button class="nav-item active" type="button" onclick="goHome()">
+        <span class="nav-icon">⟳</span>
+        <span>Spin Game</span>
+    </button>
 
-    <section class="withdraw-card">
+    <button class="nav-item" type="button" onclick="goDeposit()">
+        <span class="nav-icon">↙</span>
+        <span>Deposit</span>
+    </button>
 
-        <div class="withdraw-header">
+    <button class="nav-item locked-nav" type="button" onclick="showWithdraw()">
+        <span class="nav-icon">↗<sup class="lock-symbol">🔒</sup></span>
+        <span>Withdraw</span>
+    </button>
 
-            <div class="withdraw-title">
-                Withdraw
-            </div>
-
-            <div class="locked">
-                🔒 Locked
-            </div>
-
-        </div>
-
-        <p class="withdraw-text">
-            Withdrawals are currently unavailable until
-            the account activation requirements are completed.
-        </p>
-
-        <button
-            class="withdraw-btn"
-            disabled
-        >
-            Account Activation Required
-        </button>
-
-    </section>
-
-
-    <nav class="nav">
-
-        <div class="nav-item active">
-            🏠<br>
-            Home
-        </div>
-
-        <div class="nav-item">
-            🎡<br>
-            Spins
-        </div>
-
-        <div
-            class="nav-item"
-            onclick="logout()"
-        >
-            🚪<br>
-            Logout
-        </div>
-
-    </nav>
+    <button class="nav-item" type="button" onclick="showProfile()">
+        <span class="nav-icon">▣</span>
+        <span>Account</span>
+    </button>
+</nav>
 
 </div>
 
-
 <script>
+let spins = 5;
+let rotation = 0;
+let spinning = false;
+let soundEnabled = true;
 
-    let spins = 5;
-    let rotation = 0;
-    let spinning = false;
+const wheel = document.getElementById("wheel");
+const message = document.getElementById("message");
+const spinButton = document.getElementById("spinButton");
 
+const savedName = localStorage.getItem("cherySpinName");
 
-    const savedName =
-        localStorage.getItem("cherySpinName");
+function updateSpins() {
+    document.getElementById("spinCount").textContent =
+        spins + " Left";
 
-    if (savedName) {
-        document.getElementById("userName").textContent =
-            savedName;
-    }
+    document.getElementById("headerSpins").textContent =
+        spins + " Spins";
 
+    document.getElementById("inlineSpins").textContent = spins;
 
-    function spinWheel() {
+    document.getElementById("centerSpins").textContent =
+        spins + " LEFT";
 
-        if (spinning) {
-            return;
-        }
+    document.getElementById("buttonSpins").textContent =
+        spins + " LEFT";
 
+    spinButton.disabled = spins <= 0;
+    document.getElementById("centerButton").disabled =
+        spins <= 0 || spinning;
+}
+
+function spinWheel() {
+    if (spinning || spins <= 0) {
         if (spins <= 0) {
-
-            document.getElementById("message").textContent =
-                "You have used all 5 free spins.";
-
-            return;
+            message.textContent = "You have used all 5 free spins.";
         }
-
-
-        spinning = true;
-
-        const button =
-            document.getElementById("spinButton");
-
-        const wheel =
-            document.getElementById("wheel");
-
-        const message =
-            document.getElementById("message");
-
-
-        button.disabled = true;
-
-        message.textContent =
-            "Spinning...";
-
-
-        spins--;
-
-        document.getElementById("spinCount").textContent =
-            spins;
-
-
-        const extraRotation =
-            1440 + Math.floor(Math.random() * 720);
-
-        rotation += extraRotation;
-
-        wheel.style.transform =
-            "rotate(" + rotation + "deg)";
-
-
-        setTimeout(function() {
-
-            spinning = false;
-
-            button.disabled = spins <= 0;
-
-            if (spins > 0) {
-
-                message.textContent =
-                    "Spin completed. " +
-                    spins +
-                    " free spins remaining.";
-
-            } else {
-
-                message.textContent =
-                    "You have used all 5 free spins.";
-
-            }
-
-        }, 4200);
-
+        return;
     }
 
+    spinning = true;
+    spins--;
+    updateSpins();
 
-    function showProfile() {
+    spinButton.disabled = true;
+    document.getElementById("centerButton").disabled = true;
+    message.textContent = "Spinning...";
 
-        const name =
-            localStorage.getItem("cherySpinName");
+    const extraRotation = 1800 + Math.floor(Math.random() * 1440);
+    rotation += extraRotation;
+    wheel.style.transform = "rotate(" + rotation + "deg)";
 
-        alert(
-            "CherySpin Account\n\n" +
-            "Name: " +
-            (name || "Player") +
-            "\n\nAccount status: Not activated"
-        );
+    setTimeout(function() {
+        spinning = false;
+        updateSpins();
 
-    }
+        if (spins > 0) {
+            message.textContent =
+                "Spin completed. " + spins + " free spins remaining.";
+        } else {
+            message.textContent = "You have used all 5 free spins.";
+        }
+    }, 4200);
+}
 
+function toggleSound() {
+    soundEnabled = !soundEnabled;
+    document.getElementById("soundButton").style.color =
+        soundEnabled ? "#00c58a" : "#929bad";
+}
 
-    function logout() {
+function goHome() {
+    window.scrollTo({top: 0, behavior: "smooth"});
+}
 
-        localStorage.removeItem(
-            "cherySpinLoggedIn"
-        );
+function goDeposit() {
+    window.location.href = "./deposit.html";
+}
 
-        window.location.href =
-            "./index.html";
+function showWithdraw() {
+    alert("Withdrawals are locked until your account is activated.");
+}
 
-    }
+function showProfile() {
+    alert(
+        "CherySpin Account\n\nName: " +
+        (savedName || "Player") +
+        "\nAccount status: Not activated"
+    );
+}
 
+function logout() {
+    localStorage.removeItem("cherySpinLoggedIn");
+    window.location.href = "./index.html";
+}
+
+updateSpins();
 </script>
-
 </body>
 </html>
