@@ -259,16 +259,38 @@ main {
     padding: 0 0 8px;
 }
 
+/* SPIN WHEEL */
 .wheel-wrapper {
     position: relative;
-    width: min(82vw, 370px);
+    width: min(88vw, 370px);
     aspect-ratio: 1;
-    margin: 0 auto 8px;
+    margin: 0 auto 6px;
     padding: 8px;
     border: 6px solid #242936;
     border-radius: 50%;
     background: #171a22;
     box-shadow: 0 0 0 2px #303542, 0 7px 18px #0005;
+}
+
+/* KEEP THE WHEEL LARGE ON SHORT SCREENS */
+@media (max-height: 760px) {
+    .wheel-wrapper {
+        width: min(88vw, 370px);
+        margin-bottom: 6px;
+    }
+}
+
+@media (max-width: 360px) {
+    .wheel-wrapper {
+        width: min(88vw, 370px);
+    }
+}
+
+@media (max-height: 650px) {
+    .wheel-wrapper {
+        width: min(88vw, 370px);
+        margin-bottom: 4px;
+    }
 }
 
 
