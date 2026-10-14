@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#111216">
 <title>CherySpin Dashboard</title>
 
@@ -26,6 +26,7 @@
 html {
     background: var(--bg);
     -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -43,7 +44,7 @@ button {
 }
 
 button:disabled {
-    opacity: .55;
+    opacity: .6;
     cursor: not-allowed;
 }
 
@@ -53,16 +54,16 @@ button:disabled {
     min-height: 100vh;
     min-height: 100dvh;
     margin: 0 auto;
-    padding-bottom: calc(92px + env(safe-area-inset-bottom));
+    padding-bottom: 100px;
 }
 
 .header {
-    min-height: 94px;
-    padding: 12px 20px;
+    min-height: 76px;
+    padding: 10px 13px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
+    gap: 7px;
     background: #181a21;
     border-bottom: 1px solid var(--border);
 }
@@ -70,25 +71,25 @@ button:disabled {
 .brand {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 9px;
     min-width: 0;
     flex: 1;
-    font-size: clamp(22px, 5.3vw, 34px);
+    font-size: clamp(19px, 5vw, 29px);
     font-weight: 900;
-    letter-spacing: -1px;
+    letter-spacing: -.8px;
     white-space: nowrap;
 }
 
 .logo {
-    width: 55px;
-    height: 55px;
+    width: 43px;
+    height: 43px;
     flex-shrink: 0;
     display: grid;
     place-items: center;
-    border-radius: 13px;
+    border-radius: 11px;
     background: var(--green);
     color: #071b15;
-    font-size: 25px;
+    font-size: 19px;
 }
 
 .green {
@@ -98,28 +99,28 @@ button:disabled {
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 9px;
+    gap: 5px;
     flex-shrink: 0;
 }
 
 .header-btn {
-    min-width: 52px;
-    height: 54px;
-    padding: 0 12px;
+    min-width: 38px;
+    height: 40px;
+    padding: 0 8px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 7px;
+    gap: 5px;
     background: #1c202a;
     color: var(--green);
     border: 1px solid #303646;
-    border-radius: 13px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
 .header-btn svg {
-    width: 23px;
-    height: 23px;
+    width: 19px;
+    height: 19px;
     stroke: currentColor;
     fill: none;
     stroke-width: 2;
@@ -128,7 +129,7 @@ button:disabled {
 .spins-pill {
     color: var(--red);
     border-color: #58303b;
-    font-size: clamp(12px, 3.4vw, 19px);
+    font-size: 12px;
     font-weight: 800;
     white-space: nowrap;
 }
@@ -138,32 +139,32 @@ button:disabled {
 }
 
 main {
-    padding: 28px 28px 0;
+    padding: 17px 16px 0;
 }
 
 .balance-card {
-    min-height: 138px;
+    min-height: 91px;
     display: flex;
     align-items: center;
-    gap: 17px;
-    padding: 20px;
+    gap: 9px;
+    padding: 11px;
     background: var(--panel);
     border: 1px solid var(--border);
-    border-radius: 20px;
-    margin-bottom: 20px;
+    border-radius: 15px;
+    margin-bottom: 13px;
 }
 
 .balance-icon {
-    width: 63px;
-    height: 63px;
+    width: 44px;
+    height: 46px;
     flex-shrink: 0;
     display: grid;
     place-items: center;
     border: 1px solid #155b4b;
-    border-radius: 14px;
+    border-radius: 11px;
     color: var(--green);
     background: #102a26;
-    font-size: 32px;
+    font-size: 23px;
 }
 
 .balance-content {
@@ -173,28 +174,28 @@ main {
 
 .balance-label {
     color: var(--muted);
-    font-size: clamp(13px, 3.6vw, 23px);
+    font-size: clamp(10px, 3.1vw, 15px);
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 7px;
     white-space: nowrap;
 }
 
 .balance {
-    font-size: clamp(23px, 5.7vw, 38px);
+    font-size: clamp(19px, 5.4vw, 29px);
     line-height: 1.1;
     font-weight: 900;
     white-space: nowrap;
 }
 
 .deposit-btn {
-    min-height: 62px;
-    padding: 0 23px;
+    min-height: 47px;
+    padding: 0 11px;
     border: 0;
-    border-radius: 13px;
+    border-radius: 10px;
     background: var(--green);
     color: #031b14;
     font-weight: 900;
-    font-size: clamp(13px, 3.5vw, 23px);
+    font-size: clamp(11px, 3.1vw, 15px);
     cursor: pointer;
     white-space: nowrap;
 }
@@ -202,26 +203,26 @@ main {
 .spin-info {
     display: flex;
     align-items: center;
-    gap: 13px;
-    min-height: 112px;
-    padding: 16px;
-    margin-bottom: 22px;
+    gap: 8px;
+    min-height: 79px;
+    padding: 10px;
+    margin-bottom: 14px;
     background: var(--panel);
     border: 1px solid var(--border);
-    border-left: 6px solid var(--red);
-    border-radius: 16px;
+    border-left: 5px solid var(--red);
+    border-radius: 12px;
 }
 
 .sparkle {
     color: var(--red);
-    font-size: 31px;
+    font-size: 24px;
     flex-shrink: 0;
 }
 
 .spin-info-text {
     flex: 1;
     min-width: 0;
-    font-size: clamp(13px, 3.5vw, 23px);
+    font-size: clamp(10px, 3.1vw, 14px);
     line-height: 1.45;
 }
 
@@ -238,9 +239,9 @@ main {
     color: #ff6673;
     background: #302027;
     border: 1px solid #66313d;
-    border-radius: 9px;
-    padding: 7px 10px;
-    font-size: clamp(13px, 3.5vw, 23px);
+    border-radius: 8px;
+    padding: 6px 7px;
+    font-size: 12px;
     font-weight: 900;
     white-space: nowrap;
 }
@@ -251,30 +252,30 @@ main {
 
 .wheel-wrapper {
     position: relative;
-    width: min(82vw, 550px);
+    width: min(82vw, 390px);
     aspect-ratio: 1;
-    margin: 28px auto 35px;
-    padding: 11px;
-    border: 9px solid #242936;
+    margin: 23px auto 22px;
+    padding: 7px;
+    border: 7px solid #242936;
     border-radius: 50%;
     background: #171a22;
     box-shadow:
         0 0 0 3px #303542,
-        0 0 0 8px #191c25,
+        0 0 0 7px #191c25,
         0 8px 22px #0008;
 }
 
 .pointer {
     position: absolute;
-    z-index: 6;
-    top: -22px;
+    z-index: 8;
+    top: -17px;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
     height: 0;
-    border-left: 18px solid transparent;
-    border-right: 18px solid transparent;
-    border-top: 34px solid #ff3548;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-top: 30px solid #ff3548;
     filter: drop-shadow(0 3px 3px #0008);
 }
 
@@ -283,7 +284,8 @@ main {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    border: 5px solid #00c58a;
+    border: 4px solid #00c58a;
+    overflow: hidden;
     background: conic-gradient(
         from -30deg,
         #397ff0 0deg 60deg,
@@ -316,88 +318,90 @@ main {
     z-index: 2;
     left: 50%;
     top: 50%;
-    width: 43%;
-    height: 30px;
+    width: 39%;
+    height: 24px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    transform-origin: left center;
+    justify-content: center;
+    transform-origin: center center;
     color: #fff;
-    font-size: clamp(11px, 3vw, 17px);
+    font-size: clamp(10px, 2.8vw, 14px);
     font-weight: 900;
-    -webkit-text-stroke: .35px currentColor;
+    letter-spacing: -.35px;
     text-shadow: 0 1px 3px #0009;
     white-space: nowrap;
+    pointer-events: none;
 }
 
+/* Each label is placed halfway between the centre and the rim. */
 .prize:nth-child(1) {
-    transform: rotate(-90deg) translateX(16px);
+    transform: translate(-50%, -50%) rotate(-90deg) translateX(92px);
 }
 
 .prize:nth-child(2) {
-    transform: rotate(-30deg) translateX(16px);
+    transform: translate(-50%, -50%) rotate(-30deg) translateX(92px);
 }
 
 .prize:nth-child(3) {
-    transform: rotate(30deg) translateX(16px);
+    transform: translate(-50%, -50%) rotate(30deg) translateX(92px);
 }
 
 .prize:nth-child(4) {
-    transform: rotate(90deg) translateX(16px);
+    transform: translate(-50%, -50%) rotate(90deg) translateX(92px);
 }
 
 .prize:nth-child(5) {
-    transform: rotate(150deg) translateX(16px);
+    transform: translate(-50%, -50%) rotate(150deg) translateX(92px);
     color: #111820;
     text-shadow: none;
 }
 
 .prize:nth-child(6) {
-    transform: rotate(210deg) translateX(16px);
+    transform: translate(-50%, -50%) rotate(210deg) translateX(92px);
     color: #e2e7f1;
 }
 
 .wheel-center {
     position: absolute;
-    z-index: 4;
+    z-index: 5;
     top: 50%;
     left: 50%;
     width: 29%;
     aspect-ratio: 1;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    border: 4px solid #0e8e69;
+    border: 3px solid #0e8e69;
     background: #00c58a;
     color: #031b14;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: clamp(12px, 3.2vw, 20px);
+    font-size: clamp(11px, 3vw, 15px);
     font-weight: 900;
     box-shadow: 0 0 0 4px #10171b;
     cursor: pointer;
 }
 
 .play-icon {
-    font-size: clamp(19px, 4.5vw, 29px);
-    line-height: 1.2;
+    font-size: 20px;
+    line-height: 1.15;
 }
 
 .center-left {
     color: #f52f42;
-    font-size: clamp(10px, 2.5vw, 16px);
-    margin-top: 3px;
+    font-size: 10px;
+    margin-top: 2px;
 }
 
 .spin-btn {
     width: 94%;
-    min-height: 82px;
+    min-height: 59px;
     border: 0;
-    border-radius: 18px;
+    border-radius: 13px;
     background: var(--green);
     color: #041c15;
-    font-size: clamp(18px, 4.3vw, 29px);
+    font-size: clamp(15px, 4vw, 20px);
     font-weight: 900;
     box-shadow: 0 8px 22px #00c58a30;
     cursor: pointer;
@@ -406,7 +410,7 @@ main {
 .message {
     min-height: 35px;
     padding: 10px 3px 5px;
-    font-size: 13px;
+    font-size: 12px;
     color: var(--green);
     line-height: 1.4;
     overflow-wrap: anywhere;
@@ -420,8 +424,8 @@ main {
     transform: translateX(-50%);
     width: 100%;
     max-width: 680px;
-    height: calc(100px + env(safe-area-inset-bottom));
-    padding: 8px 5px env(safe-area-inset-bottom);
+    height: calc(76px + env(safe-area-inset-bottom));
+    padding: 5px 3px env(safe-area-inset-bottom);
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     background: #171920;
@@ -434,17 +438,17 @@ main {
     background: transparent;
     color: var(--muted);
     text-align: center;
-    font-size: clamp(12px, 3.1vw, 19px);
+    font-size: clamp(10px, 3vw, 13px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
     cursor: pointer;
 }
 
 .nav-icon {
-    font-size: clamp(24px, 5.2vw, 35px);
+    font-size: 25px;
     line-height: 1.1;
 }
 
@@ -455,223 +459,99 @@ main {
 
 .lock-symbol {
     color: #f0c54a;
-    font-size: 11px;
+    font-size: 9px;
 }
 
-@media (max-width: 420px) {
+@media (min-width: 421px) {
     .header {
-        min-height: 70px;
-        padding: 8px 9px;
-        gap: 4px;
-    }
-
-    .brand {
-        gap: 7px;
-        font-size: clamp(18px, 5vw, 24px);
-        letter-spacing: -.7px;
-    }
-
-    .logo {
-        width: 39px;
-        height: 42px;
-        border-radius: 10px;
-        font-size: 18px;
-    }
-
-    .header-actions {
-        gap: 4px;
-    }
-
-    .header-btn {
-        min-width: 35px;
-        height: 40px;
-        padding: 0 6px;
-        gap: 4px;
-        border-radius: 9px;
-    }
-
-    .header-btn svg {
-        width: 18px;
-        height: 18px;
-    }
-
-    .spins-pill {
-        font-size: 11px;
+        min-height: 88px;
+        padding: 12px 20px;
     }
 
     main {
-        padding: 16px 16px 0;
-    }
-
-    .balance-card {
-        min-height: 86px;
-        gap: 9px;
-        padding: 10px;
-        border-radius: 14px;
-        margin-bottom: 12px;
-    }
-
-    .balance-icon {
-        width: 43px;
-        height: 47px;
-        font-size: 23px;
-    }
-
-    .balance-label {
-        font-size: clamp(10px, 3.2vw, 14px);
-        margin-bottom: 8px;
-    }
-
-    .balance {
-        font-size: clamp(20px, 5.5vw, 27px);
-    }
-
-    .deposit-btn {
-        min-height: 48px;
-        padding: 0 10px;
-        font-size: clamp(11px, 3.2vw, 15px);
-        border-radius: 10px;
-    }
-
-    .spin-info {
-        min-height: 80px;
-        gap: 8px;
-        padding: 10px;
-        margin-bottom: 16px;
-        border-left-width: 5px;
-        border-radius: 12px;
-    }
-
-    .sparkle {
-        font-size: 23px;
-    }
-
-    .spin-info-text {
-        font-size: clamp(10px, 3.2vw, 14px);
-    }
-
-    .spin-count {
-        padding: 6px 7px;
-        font-size: clamp(11px, 3.2vw, 15px);
+        padding: 25px 25px 0;
     }
 
     .wheel-wrapper {
-        width: min(82vw, 550px);
-        margin-top: 20px;
-        margin-bottom: 24px;
-        padding: 7px;
-        border-width: 7px;
-    }
-
-    .pointer {
-        top: -17px;
-        border-left-width: 16px;
-        border-right-width: 16px;
-        border-top-width: 30px;
-    }
-
-    .wheel {
-        border-width: 4px;
+        width: min(75vw, 430px);
+        padding: 10px;
+        border-width: 9px;
     }
 
     .prize {
-        height: 25px;
-        font-size: clamp(10px, 3vw, 14px);
-        letter-spacing: -.3px;
-    }
-
-    .prize:nth-child(1),
-    .prize:nth-child(2),
-    .prize:nth-child(3),
-    .prize:nth-child(4),
-    .prize:nth-child(5),
-    .prize:nth-child(6) {
-        --label-distance: 22vw;
+        font-size: 15px;
     }
 
     .prize:nth-child(1) {
-        transform: rotate(-90deg) translateX(var(--label-distance));
+        transform: translate(-50%, -50%) rotate(-90deg) translateX(105px);
     }
 
     .prize:nth-child(2) {
-        transform: rotate(-30deg) translateX(var(--label-distance));
+        transform: translate(-50%, -50%) rotate(-30deg) translateX(105px);
     }
 
     .prize:nth-child(3) {
-        transform: rotate(30deg) translateX(var(--label-distance));
+        transform: translate(-50%, -50%) rotate(30deg) translateX(105px);
     }
 
     .prize:nth-child(4) {
-        transform: rotate(90deg) translateX(var(--label-distance));
+        transform: translate(-50%, -50%) rotate(90deg) translateX(105px);
     }
 
     .prize:nth-child(5) {
-        transform: rotate(150deg) translateX(var(--label-distance));
+        transform: translate(-50%, -50%) rotate(150deg) translateX(105px);
     }
 
     .prize:nth-child(6) {
-        transform: rotate(210deg) translateX(var(--label-distance));
+        transform: translate(-50%, -50%) rotate(210deg) translateX(105px);
+    }
+}
+
+@media (max-width: 350px) {
+    .brand {
+        font-size: 17px;
+        gap: 5px;
     }
 
-    .wheel-center {
-        border-width: 3px;
-        font-size: 12px;
+    .logo {
+        width: 35px;
+        height: 38px;
+        font-size: 16px;
     }
 
-    .play-icon {
-        font-size: 19px;
+    .header-btn {
+        min-width: 32px;
+        padding: 0 5px;
     }
 
-    .center-left {
+    .spins-pill {
         font-size: 10px;
     }
 
-    .spin-btn {
-        width: 94%;
-        min-height: 58px;
-        border-radius: 13px;
-        font-size: clamp(15px, 4.3vw, 19px);
-    }
-
-    .bottom-nav {
-        height: calc(76px + env(safe-area-inset-bottom));
-        padding: 5px 3px env(safe-area-inset-bottom);
-    }
-
-    .nav-item {
-        font-size: clamp(10px, 3vw, 13px);
+    .balance-card {
         gap: 6px;
+        padding: 8px;
     }
 
-    .nav-icon {
-        font-size: 25px;
+    .balance-icon {
+        width: 36px;
+        height: 40px;
+        font-size: 19px;
     }
 
-    .lock-symbol {
+    .balance {
+        font-size: 18px;
+    }
+
+    .deposit-btn {
+        padding: 0 7px;
+        font-size: 10px;
+    }
+
+    .prize {
         font-size: 9px;
     }
 }
-
-@media (max-height: 740px) and (min-width: 421px) {
-    .wheel-wrapper {
-        width: min(65vh, 450px);
-        margin-top: 15px;
-        margin-bottom: 20px;
-    }
-
-    .balance-card {
-        min-height: 105px;
-    }
-
-    .spin-info {
-        min-height: 90px;
-    }
-
-    .spin-btn {
-        min-height: 65px;
-    }
-}
-
 </style>
 </head>
 
@@ -879,8 +759,13 @@ function spinWheel() {
 
     const winningIndex = Math.floor(Math.random() * prizes.length);
     const sectorSize = 360 / prizes.length;
+
+    /*
+      The top pointer is at 270 degrees in CSS conic-gradient coordinates.
+      Align the chosen sector's centre with that pointer.
+    */
     const targetAngle =
-        (360 - (winningIndex * sectorSize + sectorSize / 2)) % 360;
+        (270 - (winningIndex * sectorSize + sectorSize / 2) + 360) % 360;
 
     const currentAngle = ((rotation % 360) + 360) % 360;
     const adjustment = (targetAngle - currentAngle + 360) % 360;
@@ -909,7 +794,6 @@ function spinWheel() {
 
 function toggleSound() {
     soundEnabled = !soundEnabled;
-
     soundButton.style.color = soundEnabled ? "#00c58a" : "#929bad";
     soundButton.setAttribute(
         "aria-label",
