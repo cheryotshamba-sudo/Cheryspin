@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#111216">
-<title>CherySpin</title>
+<title>CherySpin Dashboard</title>
 
 <style>
 :root {
@@ -722,11 +722,19 @@ function saveSpins() {
 }
 
 function updateSpins() {
-    document.getElementById("spinCount").textContent = spins + " Left";
-    document.getElementById("headerSpins").textContent = spins + " Spins";
+    document.getElementById("spinCount").textContent =
+        spins + (spins === 1 ? " Left" : " Left");
+
+    document.getElementById("headerSpins").textContent =
+        spins + " Spins";
+
     document.getElementById("inlineSpins").textContent = spins;
-    document.getElementById("centerSpins").textContent = spins + " LEFT";
-    document.getElementById("buttonSpins").textContent = spins + " LEFT";
+
+    document.getElementById("centerSpins").textContent =
+        spins + " LEFT";
+
+    document.getElementById("buttonSpins").textContent =
+        spins + " LEFT";
 
     spinButton.disabled = spins <= 0 || spinning;
     centerButton.disabled = spins <= 0 || spinning;
@@ -749,14 +757,18 @@ function spinWheel() {
     message.textContent = "Spinning...";
 
     /*
-      Demonstration only: results are calculated in the browser.
-      No real-money prize is credited to an account.
+      This is a front-end game demonstration.
+      The selected result is displayed locally.
+      It does not credit real money or update the server balance.
     */
     const winningIndex = Math.floor(Math.random() * prizes.length);
     const sectorSize = 360 / prizes.length;
-    const targetAngle =
-        (360 - (winningIndex * sectorSize + sectorSize / 2)) % 360;
 
+    /*
+      Rotate the selected sector toward the pointer at the top.
+      The wheel is allowed several full turns before stopping.
+    */
+    const targetAngle = (360 - (winningIndex * sectorSize + sectorSize / 2)) % 360;
     const currentAngle = ((rotation % 360) + 360) % 360;
     const adjustment = (targetAngle - currentAngle + 360) % 360;
 
@@ -773,7 +785,7 @@ function spinWheel() {
         } else {
             message.textContent =
                 "Wheel result: " + prizes[winningIndex] +
-                ". Demo result only; no money has been credited.";
+                ". This demo result has not been credited to your balance.";
         }
 
         if (spins === 0) {
@@ -784,11 +796,21 @@ function spinWheel() {
 
 function toggleSound() {
     soundEnabled = !soundEnabled;
+
     soundButton.style.color = soundEnabled ? "#00c58a" : "#929bad";
     soundButton.setAttribute(
         "aria-label",
         soundEnabled ? "Turn sound off" : "Turn sound on"
     );
+
+    message.textContent = soundEnabled
+        ? "Sound preference enabled."
+        : "Sound preference disabled.";
+
+    /*
+      No audio is played by this version.
+      This button only changes its preference indicator.
+    */
 }
 
 function goHome() {
@@ -804,7 +826,8 @@ function showWithdraw() {
 }
 
 function showProfile() {
-    const savedName = localStorage.getItem("cherySpinName") || "Player";
+    const savedName =
+        localStorage.getItem("cherySpinName") || "Player";
 
     alert(
         "CherySpin Account\n\n" +
@@ -814,7 +837,9 @@ function showProfile() {
 }
 
 function logout() {
-    if (!confirm("Are you sure you want to log out?")) return;
+    if (!confirm("Are you sure you want to log out?")) {
+        return;
+    }
 
     localStorage.removeItem("cherySpinLoggedIn");
     window.location.href = "./index.html";
@@ -824,4 +849,4 @@ updateSpins();
 </script>
 
 </body>
-</html>
+    </html>
