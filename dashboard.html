@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#111216">
 <title>CherySpin</title>
 
@@ -11,9 +11,7 @@
 :root {
     --bg: #111216;
     --panel: #1b1e26;
-    --panel-dark: #15171e;
     --green: #00c58a;
-    --green-dark: #07976f;
     --red: #ff3548;
     --muted: #929bad;
     --border: #292d38;
@@ -26,9 +24,14 @@
     padding: 0;
 }
 
+html, body {
+    min-height: 100%;
+    background: var(--bg);
+}
+
 body {
     min-height: 100vh;
-    background: var(--bg);
+    min-height: 100dvh;
     color: var(--white);
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -36,25 +39,27 @@ body {
 button {
     font: inherit;
     -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .app {
     width: 100%;
     max-width: 680px;
     min-height: 100vh;
+    min-height: 100dvh;
     margin: 0 auto;
-    padding-bottom: 108px;
+    padding-bottom: calc(76px + env(safe-area-inset-bottom));
 }
 
 /* HEADER */
 
 .header {
-    min-height: 96px;
-    padding: 18px 20px;
+    height: 70px;
+    padding: 8px 12px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    gap: 7px;
     background: #181a21;
     border-bottom: 1px solid var(--border);
 }
@@ -62,62 +67,67 @@ button {
 .brand {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 7px;
     min-width: 0;
-    font-size: clamp(21px, 5.4vw, 31px);
+    flex: 1;
+    font-size: clamp(18px, 4.8vw, 27px);
     font-weight: 900;
     letter-spacing: -1px;
     white-space: nowrap;
 }
 
 .logo {
-    width: 54px;
-    height: 54px;
+    width: 42px;
+    height: 42px;
     flex-shrink: 0;
     display: grid;
     place-items: center;
-    border-radius: 13px;
+    border-radius: 12px;
     background: var(--green);
     color: #071b15;
-    font-size: 24px;
+    font-size: 21px;
 }
 
-.brand .green {
+.green {
     color: var(--green);
 }
 
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 5px;
+    flex-shrink: 0;
 }
 
 .header-btn {
-    min-width: 46px;
-    height: 49px;
-    padding: 0 10px;
+    width: 38px;
+    height: 41px;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 7px;
     background: #1c202a;
     color: var(--green);
     border: 1px solid #303646;
-    border-radius: 13px;
+    border-radius: 11px;
     cursor: pointer;
 }
 
 .spins-pill {
+    width: auto;
+    min-width: 99px;
+    padding: 0 8px;
+    gap: 5px;
     color: var(--red);
     border-color: #58303b;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 800;
     white-space: nowrap;
 }
 
 .header-btn svg {
-    width: 22px;
-    height: 22px;
+    width: 21px;
+    height: 21px;
     stroke: currentColor;
     fill: none;
     stroke-width: 2;
@@ -130,32 +140,32 @@ button {
 /* BALANCE */
 
 main {
-    padding: 22px 27px 0;
+    padding: 12px 16px 0;
 }
 
 .balance-card {
+    min-height: 88px;
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 23px 20px;
-    min-height: 138px;
+    gap: 9px;
+    padding: 11px;
     background: var(--panel);
     border: 1px solid var(--border);
-    border-radius: 21px;
-    margin-bottom: 20px;
+    border-radius: 16px;
+    margin-bottom: 11px;
 }
 
 .balance-icon {
-    width: 62px;
-    height: 62px;
+    width: 41px;
+    height: 43px;
     flex-shrink: 0;
     display: grid;
     place-items: center;
     border: 1px solid #155b4b;
-    border-radius: 14px;
+    border-radius: 11px;
     color: var(--green);
     background: #102a26;
-    font-size: 29px;
+    font-size: 23px;
 }
 
 .balance-content {
@@ -165,34 +175,34 @@ main {
 
 .balance-label {
     color: var(--muted);
-    font-size: 15px;
+    font-size: clamp(10px, 2.8vw, 14px);
     font-weight: 700;
-    margin-bottom: 11px;
+    margin-bottom: 5px;
     white-space: nowrap;
 }
 
 .balance {
-    font-size: clamp(25px, 6vw, 36px);
+    font-size: clamp(20px, 5.5vw, 29px);
     line-height: 1.1;
     font-weight: 900;
     white-space: nowrap;
 }
 
 .deposit-btn {
-    min-height: 58px;
-    padding: 0 17px;
+    min-height: 45px;
+    padding: 0 10px;
     border: 0;
-    border-radius: 13px;
+    border-radius: 11px;
     background: var(--green);
     color: #031b14;
     font-weight: 900;
-    font-size: 16px;
+    font-size: 13px;
     cursor: pointer;
     white-space: nowrap;
 }
 
 .deposit-btn span {
-    margin-right: 5px;
+    margin-right: 3px;
 }
 
 /* FREE SPINS */
@@ -200,27 +210,27 @@ main {
 .spin-info {
     display: flex;
     align-items: center;
-    gap: 13px;
-    min-height: 114px;
-    padding: 18px 17px;
-    margin-bottom: 15px;
+    gap: 9px;
+    min-height: 72px;
+    padding: 10px 11px;
+    margin-bottom: 8px;
     background: var(--panel);
     border: 1px solid var(--border);
-    border-left: 7px solid var(--red);
-    border-radius: 15px;
+    border-left: 5px solid var(--red);
+    border-radius: 13px;
 }
 
 .sparkle {
     color: var(--red);
-    font-size: 27px;
+    font-size: 23px;
     flex-shrink: 0;
 }
 
 .spin-info-text {
     flex: 1;
     min-width: 0;
-    font-size: 16px;
-    line-height: 1.45;
+    font-size: clamp(11px, 3.3vw, 15px);
+    line-height: 1.35;
 }
 
 .spin-info-text strong {
@@ -236,45 +246,44 @@ main {
     color: #ff6673;
     background: #302027;
     border: 1px solid #66313d;
-    border-radius: 8px;
-    padding: 7px 10px;
-    font-size: 20px;
+    border-radius: 7px;
+    padding: 6px 8px;
+    font-size: 15px;
     font-weight: 900;
     white-space: nowrap;
 }
 
-/* PRIZE WHEEL */
+/* SPIN WHEEL */
 
 .wheel-section {
     text-align: center;
-    padding: 0 0 32px;
+    padding: 0 0 8px;
 }
 
 .wheel-wrapper {
     position: relative;
-    width: min(82vw, 420px);
+    width: min(72vw, 300px);
     aspect-ratio: 1;
-    margin: 0 auto 32px;
-    padding: 12px;
-    border: 8px solid #242936;
+    margin: 0 auto 11px;
+    padding: 8px;
+    border: 6px solid #242936;
     border-radius: 50%;
     background: #171a22;
-    box-shadow: 0 0 0 2px #303542,
-                0 12px 28px #0005;
+    box-shadow: 0 0 0 2px #303542, 0 7px 18px #0005;
 }
 
 .pointer {
     position: absolute;
     z-index: 5;
-    top: -22px;
+    top: -17px;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
     height: 0;
-    border-left: 19px solid transparent;
-    border-right: 19px solid transparent;
-    border-top: 34px solid var(--red);
-    filter: drop-shadow(0 3px 4px #0008);
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 27px solid var(--red);
+    filter: drop-shadow(0 3px 3px #0008);
 }
 
 .wheel {
@@ -282,7 +291,7 @@ main {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    border: 5px solid var(--green);
+    border: 4px solid var(--green);
     background: conic-gradient(
         from -30deg,
         #397ff0 0deg 60deg,
@@ -292,8 +301,7 @@ main {
         #ffa900 240deg 300deg,
         #252936 300deg 360deg
     );
-    box-shadow: inset 0 0 0 3px #11151d,
-                0 0 0 3px #087f61;
+    box-shadow: inset 0 0 0 2px #11151d, 0 0 0 2px #087f61;
     transition: transform 4s cubic-bezier(.12,.75,.16,1);
 }
 
@@ -316,41 +324,41 @@ main {
     left: 50%;
     top: 50%;
     width: 42%;
-    height: 35px;
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     transform-origin: left center;
     color: white;
-    font-size: clamp(12px, 3vw, 17px);
+    font-size: clamp(10px, 2.8vw, 14px);
     font-weight: 900;
     text-shadow: 0 1px 3px #0005;
     white-space: nowrap;
 }
 
 .prize:nth-child(1) {
-    transform: rotate(-90deg) translateX(8px);
+    transform: rotate(-90deg) translateX(5px);
 }
 
 .prize:nth-child(2) {
-    transform: rotate(-30deg) translateX(8px);
+    transform: rotate(-30deg) translateX(5px);
 }
 
 .prize:nth-child(3) {
-    transform: rotate(30deg) translateX(8px);
+    transform: rotate(30deg) translateX(5px);
 }
 
 .prize:nth-child(4) {
-    transform: rotate(90deg) translateX(8px);
+    transform: rotate(90deg) translateX(5px);
 }
 
 .prize:nth-child(5) {
-    transform: rotate(150deg) translateX(8px);
+    transform: rotate(150deg) translateX(5px);
     color: #111820;
 }
 
 .prize:nth-child(6) {
-    transform: rotate(210deg) translateX(8px);
+    transform: rotate(210deg) translateX(5px);
     color: #c5cedd;
 }
 
@@ -359,7 +367,7 @@ main {
     z-index: 3;
     top: 50%;
     left: 50%;
-    width: 27%;
+    width: 28%;
     aspect-ratio: 1;
     transform: translate(-50%, -50%);
     border-radius: 50%;
@@ -370,33 +378,33 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 900;
-    box-shadow: 0 0 0 4px #10171b;
+    box-shadow: 0 0 0 3px #10171b;
     cursor: pointer;
 }
 
 .play-icon {
-    font-size: 23px;
-    line-height: 1.2;
+    font-size: 19px;
+    line-height: 1.15;
 }
 
 .center-left {
     color: #f52f42;
-    font-size: 12px;
-    margin-top: 3px;
+    font-size: 10px;
+    margin-top: 2px;
 }
 
 .spin-btn {
     width: 100%;
-    min-height: 76px;
+    min-height: 52px;
     border: 0;
-    border-radius: 17px;
+    border-radius: 12px;
     background: var(--green);
     color: #041c15;
-    font-size: clamp(17px, 4.4vw, 23px);
+    font-size: clamp(15px, 4vw, 20px);
     font-weight: 900;
-    box-shadow: 0 8px 24px #00c58a25;
+    box-shadow: 0 6px 18px #00c58a25;
     cursor: pointer;
 }
 
@@ -410,14 +418,14 @@ main {
 }
 
 .message {
-    min-height: 22px;
-    padding-top: 10px;
-    font-size: 13px;
+    min-height: 17px;
+    padding-top: 4px;
+    font-size: 12px;
     color: var(--green);
-    line-height: 1.4;
+    line-height: 1.3;
 }
 
-/* BOTTOM NAV */
+/* BOTTOM NAVIGATION */
 
 .bottom-nav {
     position: fixed;
@@ -427,30 +435,31 @@ main {
     transform: translateX(-50%);
     width: 100%;
     max-width: 680px;
-    min-height: 91px;
-    padding: 10px 5px calc(10px + env(safe-area-inset-bottom));
+    height: calc(70px + env(safe-area-inset-bottom));
+    padding: 4px 4px env(safe-area-inset-bottom);
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     background: #171920;
     border-top: 1px solid #30333d;
 }
 
 .nav-item {
+    min-width: 0;
     border: 0;
     background: transparent;
     color: var(--muted);
     text-align: center;
-    font-size: 12px;
+    font-size: 11px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 4px;
     cursor: pointer;
 }
 
 .nav-icon {
-    font-size: 25px;
+    font-size: 22px;
     line-height: 1.1;
 }
 
@@ -465,79 +474,159 @@ main {
 
 .lock-symbol {
     color: #f0c54a;
-    font-size: 12px;
+    font-size: 10px;
 }
 
-@media (max-width: 380px) {
+/* SHORT PHONE SCREENS */
+
+@media (max-height: 760px) {
     .header {
-        padding: 14px 12px;
+        height: 62px;
     }
 
     .logo {
-        width: 43px;
-        height: 46px;
-        font-size: 20px;
-    }
-
-    .brand {
-        gap: 7px;
-        font-size: 20px;
-    }
-
-    .header-actions {
-        gap: 5px;
-    }
-
-    .header-btn {
-        min-width: 37px;
-        height: 43px;
-        padding: 0 7px;
-    }
-
-    .spins-pill {
-        font-size: 13px;
+        width: 38px;
+        height: 38px;
     }
 
     main {
-        padding: 17px 14px 0;
+        padding-top: 8px;
     }
 
     .balance-card {
-        gap: 10px;
-        padding: 17px 12px;
+        min-height: 75px;
+        padding: 8px 10px;
+        margin-bottom: 8px;
     }
 
     .balance-icon {
-        width: 45px;
-        height: 48px;
-        font-size: 23px;
+        width: 36px;
+        height: 38px;
     }
 
-    .balance-label {
-        font-size: 11px;
-    }
-
-    .balance {
-        font-size: 25px;
-    }
-
-    .deposit-btn {
-        min-height: 48px;
-        padding: 0 10px;
-        font-size: 13px;
-    }
-
-    .spin-info-text {
-        font-size: 13px;
-    }
-
-    .spin-count {
-        font-size: 16px;
-        padding: 6px;
+    .spin-info {
+        min-height: 62px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        margin-bottom: 6px;
     }
 
     .wheel-wrapper {
-        width: 84vw;
+        width: min(62vw, 255px);
+        margin-bottom: 8px;
+    }
+
+    .spin-btn {
+        min-height: 46px;
+    }
+}
+
+/* NARROW PHONES */
+
+@media (max-width: 360px) {
+    .header {
+        padding-left: 7px;
+        padding-right: 7px;
+        gap: 4px;
+    }
+
+    .brand {
+        gap: 5px;
+        font-size: 17px;
+    }
+
+    .logo {
+        width: 35px;
+        height: 37px;
+        font-size: 17px;
+    }
+
+    .header-actions {
+        gap: 4px;
+    }
+
+    .header-btn {
+        width: 32px;
+        height: 37px;
+    }
+
+    .spins-pill {
+        min-width: 83px;
+        width: auto;
+        padding: 0 5px;
+        font-size: 11px;
+    }
+
+    main {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .balance-card {
+        gap: 6px;
+        padding: 8px;
+    }
+
+    .balance-icon {
+        width: 31px;
+        height: 35px;
+        font-size: 18px;
+    }
+
+    .balance-label {
+        font-size: 9px;
+    }
+
+    .balance {
+        font-size: 20px;
+    }
+
+    .deposit-btn {
+        min-height: 39px;
+        padding: 0 7px;
+        font-size: 11px;
+    }
+
+    .spin-info {
+        gap: 6px;
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+
+    .spin-info-text {
+        font-size: 10px;
+    }
+
+    .spin-count {
+        font-size: 13px;
+        padding: 5px;
+    }
+
+    .wheel-wrapper {
+        width: min(65vw, 240px);
+    }
+}
+
+@media (max-height: 650px) {
+    .wheel-wrapper {
+        width: min(55vw, 215px);
+        margin-bottom: 6px;
+    }
+
+    .spin-info {
+        min-height: 55px;
+    }
+
+    .balance-card {
+        min-height: 68px;
+    }
+
+    .spin-btn {
+        min-height: 42px;
+    }
+
+    .message {
+        min-height: 14px;
     }
 }
 </style>
@@ -671,7 +760,6 @@ let soundEnabled = true;
 const wheel = document.getElementById("wheel");
 const message = document.getElementById("message");
 const spinButton = document.getElementById("spinButton");
-
 const savedName = localStorage.getItem("cherySpinName");
 
 function updateSpins() {
